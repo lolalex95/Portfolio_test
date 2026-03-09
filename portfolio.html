@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth scroll-pt-20" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>All Projects | Studio Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <!-- Top Navigation -->
+    <nav
+        class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="code.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-xl">grid_view</span>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight">Studio.</h1>
+            </a>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="code.html#work">Work</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="code.html#motion">Motion</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="code.html#about">About</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="code.html#contact">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle"
+                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <span id="theme-icon" class="material-symbols-outlined text-2xl">light_mode</span>
+                </button>
+                <a class="hidden sm:block px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-opacity"
+                    href="code.html#contact">
+                    Hire Me
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- All Projects Header -->
+    <div class="pt-24 pb-12 max-w-7xl mx-auto px-6 relative">
+        <div class="absolute inset-0 kinetic-grid opacity-20 pointer-events-none"
+            style="mask-image: linear-gradient(to bottom, black, transparent);"></div>
+        <a href="code.html#work"
+            class="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-primary transition-colors mb-8 relative z-10">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            Back to Home
+        </a>
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 relative z-10">All <span
+                class="text-primary">Projects</span></h1>
+        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed relative z-10">
+            Explore the complete archive of presentation designs, kinetic motion reels, and brand films crafted over the
+            years.
+        </p>
+    </div>
+
+    <!-- Filter Section -->
+    <section class="pb-24 max-w-7xl mx-auto px-6">
+        <div class="flex border-b border-slate-200 dark:border-slate-800 mb-12">
+            <button data-filter="all"
+                class="filter-btn active pb-4 px-6 border-b-2 border-primary text-primary font-bold text-sm transition-all sm:text-base">All
+                Projects</button>
+            <button data-filter="presentation"
+                class="filter-btn pb-4 px-6 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all sm:text-base">Presentation</button>
+            <button data-filter="motion"
+                class="filter-btn pb-4 px-6 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all sm:text-base">Motion</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+            <!-- Project 1 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Quantum AI Keynote"
+                data-description="A visually stunning keynote presentation crafted for a cutting-edge web3 AI platform. The slides translate complex neural network architectures into simple, digestible diagrams the audience can understand."
+                data-software="Figma, Keynote, Illustrator" data-disciplines="Presentation Design, UI Design"
+                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuCzBT1I45IhZiBDQW-oxEncSftlqpbFrlMvwf9FXF1kerNFc3BYtpIbN1t28oBtkKwOsSLfiRKmnf4X1JchQxx386n5hhqrhQnn3p9JShyW9jj4nEhbOOVq9_6ntqCPliN44Ml-NwHtgZMFzuUi9HDQJT65xFtExKF7kA-5b439LYMAPu5ipMD8kAyrTUqyQGc7VQkcjyMmnQZQKhBoIKakFq4YyVU2vn_V5hBkZKDvDdaYUERqVeX2M1UqEHXWnViEonTIpZJwnkc">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzBT1I45IhZiBDQW-oxEncSftlqpbFrlMvwf9FXF1kerNFc3BYtpIbN1t28oBtkKwOsSLfiRKmnf4X1JchQxx386n5hhqrhQnn3p9JShyW9jj4nEhbOOVq9_6ntqCPliN44Ml-NwHtgZMFzuUi9HDQJT65xFtExKF7kA-5b439LYMAPu5ipMD8kAyrTUqyQGc7VQkcjyMmnQZQKhBoIKakFq4YyVU2vn_V5hBkZKDvDdaYUERqVeX2M1UqEHXWnViEonTIpZJwnkc')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Quantum AI Keynote</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Presentation Design • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Web3</span>
+                </div>
+            </div>
+
+            <!-- Project 2 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Neo-Finance Brand Film"
+                data-description="A fast-paced kinetic typography and motion graphics brand film for a modern fintech startup. The edit focuses on dynamic transitions and rhythmic cuts sync'd to a custom electronic soundtrack."
+                data-software="After Effects, Premiere Pro, Cinema 4D"
+                data-disciplines="Motion Graphics, Video Editing, 3D Rendering"
+                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUYIlRW0t9kRJzLT4nazaQRDZlifO1JNZyS3H6Mlq7qw7wG6nzlSIs7elOff9V2iEVGN9o1OcBrRiu6QrzNxX2mdNAOABsO2Y2b149qXbfD3sy8mcLH7B-HPUz68zjeZn49TAlgeIyOxqPCp7ByONnxQfpBSW7_GV4CCsocpasQdSTBfh-J5hiNgaLLnZLIv2DMjTM9iOpbhQCW_q0lwJQFlIFOP6eAbIF7Kzps66W0ffBvp1_sMSoH230kI7O3RWaXLXetpNKpM">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLUYIlRW0t9kRJzLT4nazaQRDZlifO1JNZyS3H6Mlq7qw7wG6nzlSIs7elOff9V2iEVGN9o1OcBrRiu6QrzNxX2mdNAOABsO2Y2b149qXbfD3sy8mcLH7B-HPUz68zjeZn49TAlgeIyOxqPCp7ByONnxQfpBSW7_GV4CCsocpasQdSTBfh-J5hiNgaLLnZLIv2DMjTM9iOpbhQCW_q0lwJQFlIFOP6eAbIF7Kzps66W0ffBvp1_sMSoH230kI7O3RWaXLXetpNKpM')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Neo-Finance Brand Film</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Video Editing • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Fintech</span>
+                </div>
+            </div>
+
+            <!-- Project 3 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Solaris Deck"
+                data-description="A minimalist internal funding deck emphasizing typography and generous white space. Focused on telling the story of solar scalability through clear data visualization and bold product imagery."
+                data-software="Keynote, Figma" data-disciplines="Pitch Deck Design, Corporate Branding"
+                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuDSmfp3N5lVUEGK8_EMUI6iMPmqPwa9rTHbcdbNtkUPf8mrBCwSfRO1UsKRSUJm3_C0YkRmDRyPz2d-XIRGmp8cS-s-GzCOlUBR4pwYIyNJDCWz6NhgyXVjsnJ3iDLLqySfKYmlorbnH0gapce41vMGptBcaWnpaniXUMPOf_yr6cS-4g7s_9k966yiCt17derC25sdXlvs6IIcxkImrCVSnV5JfqoVhOHtXkOaL_mW0khIaCasjKjvObGkzYDyHU1P4P2MvbRzXRU">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSmfp3N5lVUEGK8_EMUI6iMPmqPwa9rTHbcdbNtkUPf8mrBCwSfRO1UsKRSUJm3_C0YkRmDRyPz2d-XIRGmp8cS-s-GzCOlUBR4pwYIyNJDCWz6NhgyXVjsnJ3iDLLqySfKYmlorbnH0gapce41vMGptBcaWnpaniXUMPOf_yr6cS-4g7s_9k966yiCt17derC25sdXlvs6IIcxkImrCVSnV5JfqoVhOHtXkOaL_mW0khIaCasjKjvObGkzYDyHU1P4P2MvbRzXRU')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Solaris Deck</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Fundraising Design • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">SaaS</span>
+                </div>
+            </div>
+
+            <!-- Project 4 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Ethereal Reel"
+                data-description="An artistic collection of looping 3D renders exploring fluid dynamics and subsurface scattering under neon lighting conditions. Used as primary exhibition backdrops in an art gallery."
+                data-software="Blender, After Effects, DaVinci Resolve" data-disciplines="3D Animation, Color Grading"
+                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuAYgkJ7GdGzkXqdHtQ1POPtqr8H6N-FpK56cOikwwH-4G6wnE5TNxnbnSnpRMDbLNYDn2kY5jCd22xbh73u7CXKOjF1A67qmsnxw1OAWriWe14ZrKJkyV3GUUGFYXg-gEsdQjF7Vhv27f2rWczE_y2__IOofhjyj4O5yhqyUhyVcZM3uqiV6xTlN9hc_yH0BCIIA4bvTviW5YP5ofbBa7_qemSorE3ylww-9HCwtG3LOTQUmgv5f6RebOquHnsU-RKS1RfjWXp9pxY">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYgkJ7GdGzkXqdHtQ1POPtqr8H6N-FpK56cOikwwH-4G6wnE5TNxnbnSnpRMDbLNYDn2kY5jCd22xbh73u7CXKOjF1A67qmsnxw1OAWriWe14ZrKJkyV3GUUGFYXg-gEsdQjF7Vhv27f2rWczE_y2__IOofhjyj4O5yhqyUhyVcZM3uqiV6xTlN9hc_yH0BCIIA4bvTviW5YP5ofbBa7_qemSorE3ylww-9HCwtG3LOTQUmgv5f6RebOquHnsU-RKS1RfjWXp9pxY')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Ethereal Reel</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Motion Graphics • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Art</span>
+                </div>
+            </div>
+
+            <!-- Project 5 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Oasis Internal Deck"
+                data-description="A clean, comprehensive internal company overview deck for a leading tech conglomerate. Uses soft gradients and precise data visualization to inform stakeholders of Q3 growth metrics."
+                data-software="Google Slides, Figma" data-disciplines="Corporate Branding, Presentation Design"
+                data-image="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Oasis Internal Deck</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Company Overview • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Tech</span>
+                </div>
+            </div>
+
+            <!-- Project 6 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Cyberpunk Explainer"
+                data-description="A 2D character animation and explainer video exploring the future of crypto-wallets. Designed with a distinct cyberpunk aesthetic, using vibrant neon outlines and deep contrasting shadows."
+                data-software="After Effects, Illustrator" data-disciplines="2D Animation, Illustration"
+                data-image="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Cyberpunk Explainer</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">2D Animation • 2022</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Crypto</span>
+                </div>
+            </div>
+
+            <!-- Project 7 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="DataViz Reports"
+                data-description="A sophisticated infographic deck designed for B2B analytics. Transformed dense spreadsheets of unstructured data into a compelling, visually striking narrative utilizing custom chart graphics."
+                data-software="Tableau, Keynote, Figma" data-disciplines="Information Architecture, Data Visualization"
+                data-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">DataViz Reports</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Infographic Deck • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">B2B</span>
+                </div>
+            </div>
+
+            <!-- Project 8 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Launch Sequence"
+                data-description="A dramatic hardware product promo showcasing the unveiling of a sleek new consumer electronics device. Built around high-contrast lighting, macro camera movements, and tension-building sound design."
+                data-software="Cinema 4D, Redshift, After Effects, Logic Pro"
+                data-disciplines="3D Product Visualization, Sound Design"
+                data-image="https://images.unsplash.com/photo-1535016120720-40c746a6580c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1535016120720-40c746a6580c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Launch Sequence</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Product Promo • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Startup</span>
+                </div>
+            </div>
+
+            <!-- Project 9 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Series A Pitch"
+                data-description="A high-stakes Series A pitch deck that successfully raised $15M for a fast-growing fintech company. Focuses on clear problem-solution framing and robust financial modeling slides."
+                data-software="Keynote, Illustrator" data-disciplines="Pitch Deck Design, Brand Identity"
+                data-image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Series A Pitch</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Fundraising • 2022</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Finance</span>
+                </div>
+            </div>
+
+            <!-- Project 10 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Abstract Loop 01"
+                data-description="A series of seamlessly looping geometric animations designed for social media engagement. Experimenting with procedural textures and physical simulations."
+                data-software="Blender, After Effects" data-disciplines="3D Animation, Procedural Design"
+                data-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Abstract Loop 01</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Social Media Asset • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Social</span>
+                </div>
+            </div>
+
+            <!-- Project 11 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Agency Showcase"
+                data-description="A bold, image-heavy portfolio deck designed for a creative agency. Utilizing full-bleed imagery and minimalist typography to let the agency's work speak for itself."
+                data-software="Figma, Photoshop" data-disciplines="Portfolio Design, Layout"
+                data-image="https://images.unsplash.com/photo-1542744094-24638ea0b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1542744094-24638ea0b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Agency Showcase</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Portfolio Deck • 2021</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Creative</span>
+                </div>
+            </div>
+
+            <!-- Project 12 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Retro Interface"
+                data-description="A UI animation study recreating a nostalgic, retro-futuristic operating system. Features scanning lines, glowing text effects, and chunky transitional animations."
+                data-software="After Effects, Figma" data-disciplines="UI Animation, Motion Graphics"
+                data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Retro Interface</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">UI Animation • 2022</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Gaming</span>
+                </div>
+            </div>
+
+            <!-- Project 13 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Q4 Earnings"
+                data-description="A sophisticated corporate board deck synthesizing an entire year of financial performance into a clear, compelling 15-minute narrative for stakeholders."
+                data-software="PowerPoint, Excel, Illustrator" data-disciplines="Financial Reporting, Layout Design"
+                data-image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Q4 Earnings</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Corporate Board • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Corporate</span>
+                </div>
+            </div>
+
+            <!-- Project 14 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Kinetic Poster"
+                data-description="A series of animated typography posters for an underground music festival. Combines aggressive frame rates with distorted soundscapes to capture the raw energy of the event."
+                data-software="After Effects, Photoshop" data-disciplines="Typography, Motion Graphics"
+                data-image="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Kinetic Poster</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Event Visuals • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Art</span>
+                </div>
+            </div>
+
+            <!-- Project 15 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Product Roadmap"
+                data-description="An engaging all-hands product roadmap deck designed to align an entire organization around key Q1 deliverables and long-term vision goals."
+                data-software="Figma, Keynote" data-disciplines="Information Architecture, UX Research"
+                data-image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Product Roadmap</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">All-Hands Deck • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Product</span>
+                </div>
+            </div>
+
+            <!-- Project 16 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Logo Reveal"
+                data-description="A minimalist, highly polished 5-second logo reveal animation utilizing negative space, fluid motion trails, and crisp sound effects to establish brand presence."
+                data-software="After Effects, Illustrator" data-disciplines="Brand Identity, 2D Animation"
+                data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Logo Reveal</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Identity • 2021</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Branding</span>
+                </div>
+            </div>
+
+            <!-- Project 17 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Onboarding Flow</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Internal Training • 2022</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">HR</span>
+                </div>
+            </div>
+
+            <!-- Project 18 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">3D Topology</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Background Assets • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">3D</span>
+                </div>
+            </div>
+
+            <!-- Project 19 (Presentation) -->
+            <div class="project-card group cursor-pointer" data-category="presentation">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Case Studies</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Sales Enablement • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Sales</span>
+                </div>
+            </div>
+
+            <!-- Project 20 (Motion) -->
+            <div class="project-card group cursor-pointer" data-category="motion">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-300 dark:bg-slate-700 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Web UI Reel</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Interaction Design • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Web</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-sm text-slate-500">© 2024 Studio Design. Built with passion and precision.</p>
+            <div class="flex gap-8 text-sm font-bold uppercase tracking-widest text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">Behance</a>
+                <a class="hover:text-primary transition-colors" href="#">Dribbble</a>
+                <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal"
+        class="fixed inset-0 z-[200] hidden items-center justify-center p-4 sm:p-6 bg-slate-900/40 dark:bg-black/60 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <!-- Overlay click area -->
+        <div id="modal-backdrop" class="absolute inset-0"></div>
+
+        <!-- Modal Content -->
+        <div
+            class="relative w-full max-w-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
+            <!-- Close Button -->
+            <button id="close-modal-btn"
+                class="absolute top-4 right-4 z-10 p-2 bg-white/50 dark:bg-black/30 backdrop-blur-sm rounded-full text-slate-900 dark:text-white hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <!-- Hero Image -->
+            <div class="w-full h-48 sm:h-64 md:h-80 bg-slate-200 dark:bg-slate-800 relative z-0">
+                <img id="modal-image" src="" alt="Project Image" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 to-transparent"></div>
+            </div>
+
+            <!-- Content Area - Scrollable -->
+            <div class="p-6 sm:p-8 md:p-10 -mt-16 sm:-mt-20 relative z-10 overflow-y-auto flex-1 custom-scrollbar">
+                <h2 id="modal-title"
+                    class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">Project
+                    Title</h2>
+
+                <p id="modal-description" class="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                    Project description goes here.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-200 dark:border-slate-800 pt-8">
+                    <!-- Software Section -->
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-3">Software Used</h4>
+                        <div id="modal-software" class="flex flex-wrap gap-2">
+                            <!-- Tags injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Disciplines Section -->
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-3">Disciplines</h4>
+                        <div id="modal-disciplines" class="flex flex-wrap gap-2">
+                            <!-- Tags injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

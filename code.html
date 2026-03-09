@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth scroll-pt-20" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Portfolio | Presentations &amp; Video Editor</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <!-- Top Navigation -->
+    <nav
+        class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-xl">grid_view</span>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight">Studio.</h1>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#work">Work</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#motion">Motion</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4">
+                <button id="theme-toggle"
+                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <span id="theme-icon" class="material-symbols-outlined text-2xl">light_mode</span>
+                </button>
+                <a class="hidden sm:block px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-opacity"
+                    href="#contact">
+                    Hire Me
+                </a>
+                <!-- Hamburger Button -->
+                <button id="mobile-menu-btn"
+                    class="md:hidden p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[100] bg-background-light dark:bg-background-dark transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-6 px-6 pb-8 h-[100dvh]">
+        <div class="flex justify-between items-center mb-12">
+            <h1 class="text-xl font-bold tracking-tight">Studio.</h1>
+            <button id="close-menu-btn"
+                class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors border border-slate-200 dark:border-slate-800">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-8 text-3xl font-bold tracking-tight">
+            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#work">Work</a>
+            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#motion">Motion</a>
+            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#about">About</a>
+            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#contact">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col gap-6">
+            <a class="mobile-link w-full text-center py-4 bg-primary text-white text-lg font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
+                href="#contact">
+                Hire Me
+            </a>
+            <div class="flex justify-center gap-6 mt-2">
+                <a class="p-3 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-primary hover:text-white transition-all text-slate-600 dark:text-slate-400"
+                    href="#"><span class="material-symbols-outlined">share</span></a>
+                <a class="p-3 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-primary hover:text-white transition-all text-slate-600 dark:text-slate-400"
+                    href="#"><span class="material-symbols-outlined">movie</span></a>
+                <a class="p-3 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-primary hover:text-white transition-all text-slate-600 dark:text-slate-400"
+                    href="#"><span class="material-symbols-outlined">link</span></a>
+            </div>
+            <p class="text-xs text-center text-slate-500 font-medium tracking-wider uppercase">© 2024 Studio Design.</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
+        <!-- Fondo animado custom (Solo Modo Oscuro) -->
+        <canvas id="hero-glcanvas" class="absolute inset-0 w-full h-full object-cover -z-10 hidden dark:block"></canvas>
+
+        <div class="absolute inset-0 kinetic-grid opacity-50"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl aspect-square bg-primary/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <div
+                class="relative bg-slate-800/80 dark:bg-slate-900/60 text-white border border-slate-700/50 backdrop-blur-md rounded-[2.5rem] p-8 lg:p-12 xl:p-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center shadow-2xl overflow-hidden">
+                <div class="lg:col-span-7 relative z-10">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">Available
+                        for Projects</span>
+                    <h1 class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8">
+                        Presentations <br />
+                        <span class="text-primary">&amp;</span> Video Editor
+                    </h1>
+                    <p class="text-xl md:text-2xl text-slate-300 dark:text-slate-400 max-w-xl leading-relaxed mb-10">
+                        Elevating visual storytelling through high-impact design and precision motion for the world's
+                        leading tech brands.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button
+                            class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:translate-y-[-2px] transition-all shadow-lg shadow-primary/20">
+                            View Showreel
+                        </button>
+                        <button
+                            class="px-8 py-4 bg-white/10 text-white font-bold rounded-xl hover:translate-y-[-2px] hover:bg-white/20 transition-all border border-white/10 hover:border-white/20">
+                            Our Process
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative">
+                    <div class="w-full aspect-square relative flex items-center justify-center overflow-hidden group">
+                        <img src="video_pipeline.svg" alt="Video Processing Pipeline"
+                            class="w-full h-full object-contain opacity-90 transition-transform duration-700 group-hover:scale-105" />
+                        <!-- Floating Tech Pills -->
+                        <div
+                            class="absolute top-10 right-10 bg-white/10 border border-white/20 text-white p-3 rounded-xl shadow-xl backdrop-blur-md flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">play_circle</span>
+                            <span class="text-xs font-bold uppercase">4K Rendering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section class="py-24 max-w-7xl mx-auto px-6" id="about">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="aspect-[4/5] rounded-3xl bg-slate-200 dark:bg-slate-800 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                    <img alt="AlexCorp Headquarters" class="w-full h-full object-cover transition-all duration-700"
+                        data-alt="Modern corporate building of AlexCorp" src="assets/img/AlexCorp.png" />
+                </div>
+                <div class="absolute -bottom-6 -right-6 p-6 bg-primary text-white rounded-2xl shadow-2xl">
+                    <p class="text-3xl font-bold">5+</p>
+                    <p class="text-xs font-bold uppercase tracking-widest opacity-80">Years Exp.</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Crafting clarity from complexity.</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                    I believe that every presentation is a performance and every video is a journey. My mission is to
+                    strip away the noise and highlight the core narrative that moves audiences to action.
+                </p>
+                <div class="grid grid-cols-2 gap-8 mb-10">
+                    <div>
+                        <h4 class="font-bold text-primary mb-2">Philosophy</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Minimalism is not the absence of things,
+                            but the perfect amount of them.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-primary mb-2">Process</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Strategy first, design second. Every frame
+                            must serve the story.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="flex -space-x-3">
+                        <div class="size-10 rounded-full border-2 border-background-dark bg-slate-500 overflow-hidden"
+                            data-alt="Client avatar one"></div>
+                        <div class="size-10 rounded-full border-2 border-background-dark bg-slate-600 overflow-hidden"
+                            data-alt="Client avatar two"></div>
+                        <div class="size-10 rounded-full border-2 border-background-dark bg-slate-700 overflow-hidden"
+                            data-alt="Client avatar three"></div>
+                    </div>
+                    <p class="text-sm font-medium">Trusted by founders at <span class="font-bold">Stripe, Vercel &amp;
+                            Tesla</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Work Grid Section -->
+    <section class="py-24 max-w-7xl mx-auto px-6" id="work">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">My Portfolio</h2>
+                <p class="text-slate-500 dark:text-slate-400">A collection of premium pitch decks and cinematic edits.
+                </p>
+            </div>
+            <div class="flex gap-4 border-b border-slate-200 dark:border-slate-800">
+                <button data-filter="all"
+                    class="filter-btn active pb-4 px-2 border-b-2 border-primary text-primary font-bold text-sm transition-all">All
+                    Projects</button>
+                <button data-filter="presentation"
+                    class="filter-btn pb-4 px-2 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all">Presentation</button>
+                <button data-filter="motion"
+                    class="filter-btn pb-4 px-2 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all">Motion</button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="portfolio-grid">
+            <!-- Project Card 1 -->
+            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Quantum AI Keynote"
+                data-description="A high-stakes presentation designed for the launch of a new AI platform. The goal was to translate complex neural network architectures into digestible, visually striking slides that would captivate investors and tech enthusiasts alike."
+                data-software="Figma, Keynote, Illustrator" data-disciplines="Presentation Design, Data Visualization"
+                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuCzBT1I45IhZiBDQW-oxEncSftlqpbFrlMvwf9FXF1kerNFc3BYtpIbN1t28oBtkKwOsSLfiRKmnf4X1JchQxx386n5hhqrhQnn3p9JShyW9jj4nEhbOOVq9_6ntqCPliN44Ml-NwHtgZMFzuUi9HDQJT65xFtExKF7kA-5b439LYMAPu5ipMD8kAyrTUqyQGc7VQkcjyMmnQZQKhBoIKakFq4YyVU2vn_V5hBkZKDvDdaYUERqVeX2M1UqEHXWnViEonTIpZJwnkc">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        data-alt="Modern tech keynote presentation slides display"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzBT1I45IhZiBDQW-oxEncSftlqpbFrlMvwf9FXF1kerNFc3BYtpIbN1t28oBtkKwOsSLfiRKmnf4X1JchQxx386n5hhqrhQnn3p9JShyW9jj4nEhbOOVq9_6ntqCPliN44Ml-NwHtgZMFzuUi9HDQJT65xFtExKF7kA-5b439LYMAPu5ipMD8kAyrTUqyQGc7VQkcjyMmnQZQKhBoIKakFq4YyVU2vn_V5hBkZKDvDdaYUERqVeX2M1UqEHXWnViEonTIpZJwnkc')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">Quantum AI Keynote</h3>
+                        <p class="text-slate-500 dark:text-slate-400">Presentation Design • 2024</p>
+                    </div>
+                    <span
+                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">Web3</span>
+                </div>
+            </div>
+            <!-- Project Card 2 -->
+            <div class="project-card group cursor-pointer" data-category="motion" data-title="Neo-Finance Brand Film"
+                data-description="A fast-paced, kinetic typography and motion graphics brand film for a modern fintech startup. The edit focuses on seamless transitions and rhythmic cuts sync'd to an upbeat electronic track, reflecting the speed of modern finance."
+                data-software="After Effects, Premiere Pro" data-disciplines="Motion Graphics, Video Editing"
+                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUYIlRW0t9kRJzLT4nazaQRDZlifO1JNZyS3H6Mlq7qw7wG6nzlSIs7elOff9V2iEVGN9o1OcBrRiu6QrzNxX2mdNAOABsO2Y2b149qXbfD3sy8mcLH7B-HPUz68zjeZn49TAlgeIyOxqPCp7ByONnxQfpBSW7_GV4CCsocpasQdSTBfh-J5hiNgaLLnZLIv2DMjTM9iOpbhQCW_q0lwJQFlIFOP6eAbIF7Kzps66W0ffBvp1_sMSoH230kI7O3RWaXLXetpNKpM">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        data-alt="Cinematic video editing montage frame"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLUYIlRW0t9kRJzLT4nazaQRDZlifO1JNZyS3H6Mlq7qw7wG6nzlSIs7elOff9V2iEVGN9o1OcBrRiu6QrzNxX2mdNAOABsO2Y2b149qXbfD3sy8mcLH7B-HPUz68zjeZn49TAlgeIyOxqPCp7ByONnxQfpBSW7_GV4CCsocpasQdSTBfh-J5hiNgaLLnZLIv2DMjTM9iOpbhQCW_q0lwJQFlIFOP6eAbIF7Kzps66W0ffBvp1_sMSoH230kI7O3RWaXLXetpNKpM')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">Neo-Finance Brand Film</h3>
+                        <p class="text-slate-500 dark:text-slate-400">Video Editing • 2023</p>
+                    </div>
+                    <span
+                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">Fintech</span>
+                </div>
+            </div>
+            <!-- Project Card 3 -->
+            <div class="project-card group cursor-pointer" data-category="presentation">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        data-alt="Clean minimalist pitch deck overview"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSmfp3N5lVUEGK8_EMUI6iMPmqPwa9rTHbcdbNtkUPf8mrBCwSfRO1UsKRSUJm3_C0YkRmDRyPz2d-XIRGmp8cS-s-GzCOlUBR4pwYIyNJDCWz6NhgyXVjsnJ3iDLLqySfKYmlorbnH0gapce41vMGptBcaWnpaniXUMPOf_yr6cS-4g7s_9k966yiCt17derC25sdXlvs6IIcxkImrCVSnV5JfqoVhOHtXkOaL_mW0khIaCasjKjvObGkzYDyHU1P4P2MvbRzXRU')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">Solaris Pitch Deck</h3>
+                        <p class="text-slate-500 dark:text-slate-400">Fundraising Design • 2024</p>
+                    </div>
+                    <span
+                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">SaaS</span>
+                </div>
+            </div>
+            <!-- Project Card 4 -->
+            <div class="project-card group cursor-pointer" data-category="motion">
+                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        data-alt="Kinetic typography motion design sequence"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYgkJ7GdGzkXqdHtQ1POPtqr8H6N-FpK56cOikwwH-4G6wnE5TNxnbnSnpRMDbLNYDn2kY5jCd22xbh73u7CXKOjF1A67qmsnxw1OAWriWe14ZrKJkyV3GUUGFYXg-gEsdQjF7Vhv27f2rWczE_y2__IOofhjyj4O5yhqyUhyVcZM3uqiV6xTlN9hc_yH0BCIIA4bvTviW5YP5ofbBa7_qemSorE3ylww-9HCwtG3LOTQUmgv5f6RebOquHnsU-RKS1RfjWXp9pxY')">
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">Ethereal Motion Reel</h3>
+                        <p class="text-slate-500 dark:text-slate-400">Motion Graphics • 2024</p>
+                    </div>
+                    <span
+                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">Art</span>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16 flex justify-center">
+            <a href="portfolio.html"
+                class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:translate-y-[-2px] transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                <span>View All Projects</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+    <!-- Motion Experiments -->
+    <section class="py-24 bg-slate-100 dark:bg-slate-900/50" id="motion">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold tracking-tight mb-4">Motion Experiments</h2>
+                <p class="text-slate-500 dark:text-slate-400">Testing the boundaries of digital fluidity.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="p-8 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded-3xl group">
+                    <div class="h-40 mb-6 flex items-center justify-center">
+                        <svg class="h-full" viewbox="0 0 100 100">
+                            <rect
+                                class="text-primary group-hover:rotate-45 transition-transform duration-500 origin-center"
+                                fill="none" height="50" rx="12" stroke="currentColor" stroke-width="2" width="50" x="25"
+                                y="25"></rect>
+                            <circle class="text-primary/20" cx="50" cy="50" fill="currentColor" r="15"></circle>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Morphing Geometry</h4>
+                    <p class="text-sm text-slate-500">Exploring CSS transitions through complex SVG path manipulations.
+                    </p>
+                </div>
+                <div
+                    class="p-8 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded-3xl group">
+                    <div class="h-40 mb-6 flex items-center justify-center">
+                        <svg class="h-full" viewbox="0 0 100 100">
+                            <text class="text-primary group-hover:tracking-widest transition-all duration-500"
+                                fill="currentColor" font-size="20" font-weight="900" text-anchor="middle" x="50"
+                                y="55">KINETIC</text>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Dynamic Type</h4>
+                    <p class="text-sm text-slate-500">Typography that reacts to user interaction and scroll velocity.
+                    </p>
+                </div>
+                <div
+                    class="p-8 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded-3xl group">
+                    <div class="h-40 mb-6 flex items-center justify-center">
+                        <svg class="h-full" viewbox="0 0 100 100">
+                            <path class="text-primary group-hover:translate-x-4 transition-transform duration-500"
+                                d="M20 50 Q 50 20 80 50 T 20 50" fill="none" stroke="currentColor" stroke-width="2">
+                            </path>
+                            <path
+                                class="text-primary/40 group-hover:translate-x-[-4px] transition-transform duration-500"
+                                d="M20 60 Q 50 30 80 60 T 20 60" fill="none" stroke="currentColor" stroke-width="2">
+                            </path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Liquid Physics</h4>
+                    <p class="text-sm text-slate-500">Simulating fluid motion with Bézier curves and dynamic easing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-24 border-t border-slate-200 dark:border-slate-800" id="contact">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-10">
+                Let's create something <br />
+                <span class="text-primary italic">great together.</span>
+            </h2>
+            <div class="flex flex-col items-center gap-8">
+                <a class="text-2xl md:text-4xl font-medium hover:text-primary transition-colors underline underline-offset-8 decoration-primary/30"
+                    href="mailto:hello@studio.com">
+                    hello@studio.design
+                </a>
+                <div class="flex gap-6 mt-4">
+                    <a class="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined">share</span>
+                    </a>
+                    <a class="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined">movie</span>
+                    </a>
+                    <a class="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined">link</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-sm text-slate-500">© 2024 Studio Design. Built with passion and precision.</p>
+            <div class="flex gap-8 text-sm font-bold uppercase tracking-widest text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">Behance</a>
+                <a class="hover:text-primary transition-colors" href="#">Dribbble</a>
+                <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <!-- Custom WebGL Shader Background -->
+    <script src="assets/js/hero-shader.js"></script>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal"
+        class="fixed inset-0 z-[200] hidden items-center justify-center p-4 sm:p-6 bg-slate-900/40 dark:bg-black/60 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <!-- Overlay click area -->
+        <div id="modal-backdrop" class="absolute inset-0"></div>
+
+        <!-- Modal Content -->
+        <div
+            class="relative w-full max-w-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
+            <!-- Close Button -->
+            <button id="close-modal-btn"
+                class="absolute top-4 right-4 z-10 p-2 bg-white/50 dark:bg-black/30 backdrop-blur-sm rounded-full text-slate-900 dark:text-white hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <!-- Hero Image -->
+            <div class="w-full h-48 sm:h-64 md:h-80 bg-slate-200 dark:bg-slate-800 relative z-0">
+                <img id="modal-image" src="" alt="Project Image" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 to-transparent"></div>
+            </div>
+
+            <!-- Content Area - Scrollable -->
+            <div class="p-6 sm:p-8 md:p-10 -mt-16 sm:-mt-20 relative z-10 overflow-y-auto flex-1 custom-scrollbar">
+                <h2 id="modal-title"
+                    class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">Project
+                    Title</h2>
+
+                <p id="modal-description" class="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                    Project description goes here.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-200 dark:border-slate-800 pt-8">
+                    <!-- Software Section -->
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-3">Software Used</h4>
+                        <div id="modal-software" class="flex flex-wrap gap-2">
+                            <!-- Tags injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Disciplines Section -->
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-3">Disciplines</h4>
+                        <div id="modal-disciplines" class="flex flex-wrap gap-2">
+                            <!-- Tags injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+    <defs>
+
+        <!-- Neon Stroke Gradient (Cyan to Purple) -->
+        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00f0ff" /> <!-- Neon cyan -->
+            <stop offset="50%" stop-color="#7000ff" />
+            <stop offset="100%" stop-color="#b026ff" /> <!-- Neon purple -->
+        </linearGradient>
+        
+        <!-- Glow Flowing Gradient -->
+        <linearGradient id="glow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(0, 240, 255, 0)" />
+            <stop offset="50%" stop-color="#00f0ff" />
+            <stop offset="100%" stop-color="rgba(0, 240, 255, 0)" />
+        </linearGradient>
+
+        <!-- Filters for Glow Effect -->
+        <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+        
+        <filter id="light-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+
+        <style>
+            .neon-path {
+                fill: none;
+                stroke: url(#neon-grad);
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            
+            .dim-path {
+                fill: none;
+                stroke: rgba(255, 255, 255, 0.1);
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+
+            /* Animations */
+            @keyframes flowSignal {
+                0% { stroke-dashoffset: 400; opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { stroke-dashoffset: -400; opacity: 0; }
+            }
+
+            .signal {
+                stroke-dasharray: 80 320;
+                animation: flowSignal 4s linear infinite;
+                stroke: url(#glow-grad);
+                stroke-width: 3;
+                filter: url(#light-glow);
+            }
+
+            @keyframes slideFrames1 {
+                0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+                33% { transform: translateY(-10px) scale(1.02); opacity: 1; stroke: #00f0ff; }
+            }
+            @keyframes slideFrames2 {
+                0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+                33% { transform: translateY(0) scale(1); opacity: 0.7; }
+                66% { transform: translateY(-10px) scale(1.02); opacity: 1; stroke: #7000ff; }
+            }
+            @keyframes slideFrames3 {
+                0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+                66% { transform: translateY(0) scale(1); opacity: 0.5; }
+                99% { transform: translateY(-10px) scale(1.02); opacity: 1; stroke: #b026ff; }
+            }
+
+            .frame-1 { transform-origin: center; animation: slideFrames1 6s infinite ease-in-out; }
+            .frame-2 { transform-origin: center; animation: slideFrames2 6s infinite ease-in-out; }
+            .frame-3 { transform-origin: center; animation: slideFrames3 6s infinite ease-in-out; }
+            
+            @keyframes pulseLayers {
+                0%, 100% { transform: scale(1) translateY(0); opacity: 0.8; }
+                50% { transform: scale(1.05) translateY(-5px); opacity: 1; filter: url(#light-glow); }
+            }
+            
+            .layer-top { transform-origin: 800px 300px; animation: pulseLayers 3s infinite ease-in-out alternate; }
+            .layer-bottom { transform-origin: 800px 300px; animation: pulseLayers 3s infinite ease-in-out alternate-reverse; opacity: 0.5;}
+
+            @keyframes playheadMove {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(600px); }
+            }
+            
+            .playhead-group {
+                animation: playheadMove 8s linear infinite;
+            }
+            
+            @keyframes pulseNode {
+                0%, 100% { r: 3; opacity: 0.5; }
+                50% { r: 5; opacity: 1; filter: url(#light-glow); stroke: #00f0ff; }
+            }
+            
+            .node-1 { animation: pulseNode 2s infinite ease-in-out; animation-delay: 0s; }
+            .node-2 { animation: pulseNode 2s infinite ease-in-out; animation-delay: 0.5s; }
+            .node-3 { animation: pulseNode 2s infinite ease-in-out; animation-delay: 1s; }
+        </style>
+    </defs>
+
+    <!-- Background -->
+    <!-- Transparent -->
+
+    <!-- Grid overlay (subtle) -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="0" y1="150" x2="1000" y2="150" />
+        <line x1="0" y1="300" x2="1000" y2="300" />
+        <line x1="0" y1="450" x2="1000" y2="450" />
+        <line x1="250" y1="0" x2="250" y2="600" />
+        <line x1="500" y1="0" x2="500" y2="600" />
+        <line x1="750" y1="0" x2="750" y2="600" />
+    </g>
+
+    <g transform="translate(0, -30)">
+        <!-- LEFT: Video Player -->
+        <g transform="translate(100, 220)">
+            <!-- Outer Player Frame -->
+            <rect x="0" y="0" width="160" height="120" rx="12" class="dim-path" />
+            <rect x="0" y="0" width="160" height="120" rx="12" fill="none" stroke="url(#neon-grad)" stroke-width="1" opacity="0.6" filter="url(#neon-glow)" />
+            
+            <!-- Play Button -->
+            <polygon points="70,50 95,60 70,70" fill="none" class="neon-path" filter="url(#light-glow)" stroke-width="2" />
+            <circle cx="80" cy="60" r="25" class="dim-path" stroke-dasharray="4 4" />
+            
+            <!-- Small Progress Bar -->
+            <line x1="20" y1="100" x2="140" y2="100" class="dim-path" />
+            <line x1="20" y1="100" x2="80" y2="100" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" filter="url(#light-glow)" />
+        </g>
+
+        <!-- CONNECTION PATH (Player to Center) -->
+        <path d="M 260 280 C 320 280, 350 220, 420 240" class="dim-path" />
+        <path d="M 260 280 C 320 280, 350 220, 420 240" class="neon-path signal" />
+
+        <!-- CENTER: Overlapping Processing Frames -->
+        <g transform="translate(420, 160)">
+            <!-- Frame 3 (Back) -->
+            <g class="frame-3">
+                <rect x="40" y="40" width="140" height="160" rx="8" class="neon-path" opacity="0.5" stroke="#b026ff" />
+                <!-- Data nodes -->
+                <circle cx="60" cy="60" r="2" fill="#b026ff" />
+                <circle cx="60" cy="180" r="2" fill="#b026ff" />
+                <circle cx="160" cy="60" r="2" fill="#b026ff" />
+                <circle cx="160" cy="180" r="2" fill="#b026ff" />
+                <line x1="60" y1="100" x2="120" y2="100" stroke="rgba(176, 38, 255, 0.4)" stroke-width="1" />
+            </g>
+            
+            <!-- Frame 2 (Middle) -->
+            <g class="frame-2">
+                <rect x="20" y="20" width="140" height="160" rx="8" class="neon-path" opacity="0.7" stroke="#7000ff" />
+                <!-- Grid dots -->
+                <circle cx="40" cy="40" r="2" fill="#7000ff" />
+                <circle cx="40" cy="160" r="2" fill="#7000ff" />
+                <circle cx="140" cy="40" r="2" fill="#7000ff" />
+                <circle cx="140" cy="160" r="2" fill="#7000ff" />
+                <line x1="40" y1="100" x2="120" y2="100" stroke="rgba(112, 0, 255, 0.4)" stroke-width="1" />
+            </g>
+            
+            <!-- Frame 1 (Front) -->
+            <g class="frame-1">
+                <rect x="0" y="0" width="140" height="160" rx="8" class="neon-path" stroke="#00f0ff" filter="url(#light-glow)" />
+                <circle cx="20" cy="20" r="2" fill="#00f0ff" />
+                <circle cx="20" cy="140" r="2" fill="#00f0ff" />
+                <circle cx="120" cy="20" r="2" fill="#00f0ff" />
+                <circle cx="120" cy="140" r="2" fill="#00f0ff" />
+                
+                <!-- Inner processing UI elements -->
+                <rect x="30" y="30" width="80" height="60" rx="4" class="dim-path" />
+                <line x1="30" y1="110" x2="110" y2="110" class="neon-path" stroke="#00f0ff" stroke-width="1" />
+                <line x1="30" y1="125" x2="80" y2="125" class="neon-path" stroke="#00f0ff" stroke-width="1" />
+            </g>
+        </g>
+        
+        <!-- CONNECTION PATH (Center to Right) -->
+        <path d="M 600 240 C 670 240, 680 300, 750 280" class="dim-path" />
+        <path d="M 600 240 C 670 240, 680 300, 750 280" class="neon-path signal" style="animation-delay: 2s;" />
+
+        <!-- RIGHT: Stacked Square Layers -->
+        <g transform="translate(750, 210)">
+            <g class="layer-bottom">
+                <polygon points="10,60 70,30 130,60 70,90" fill="none" class="neon-path" stroke="#7000ff" />
+                <line x1="70" y1="30" x2="70" y2="60" stroke="rgba(112, 0, 255, 0.4)" stroke-width="1" />
+            </g>
+            <g class="layer-top">
+                <polygon points="10,40 70,10 130,40 70,70" fill="rgba(0, 240, 255, 0.05)" class="neon-path" stroke="#00f0ff" />
+                <!-- Network nodes on top layer -->
+                <circle cx="70" cy="10" r="3" fill="#00f0ff" />
+                <circle cx="10" cy="40" r="3" fill="#00f0ff" />
+                <circle cx="130" cy="40" r="3" fill="#00f0ff" />
+                <circle cx="70" cy="70" r="3" fill="#00f0ff" />
+                <line x1="70" y1="10" x2="70" y2="40" stroke="#00f0ff" stroke-width="1" opacity="0.5" />
+            </g>
+        </g>
+    </g>
+
+    <!-- BOTTOM: Timeline Progress -->
+    <g transform="translate(200, 480)">
+        <!-- Timeline Bar Base -->
+        <line x1="0" y1="0" x2="600" y2="0" stroke="rgba(255, 255, 255, 0.1)" stroke-width="4" stroke-linecap="round" />
+        <!-- Filled Timeline -->
+        <line x1="0" y1="0" x2="600" y2="0" stroke="url(#neon-grad)" stroke-width="4" stroke-linecap="round" filter="url(#neon-glow)" opacity="0.4" />
+        
+        <!-- Nodes -->
+        <circle cx="100" cy="0" r="3" fill="none" class="dim-path node-1" />
+        <circle cx="300" cy="0" r="3" fill="none" class="dim-path node-2" />
+        <circle cx="500" cy="0" r="3" fill="none" class="dim-path node-3" />
+        
+        <!-- Tick marks -->
+        <g stroke="rgba(255, 255, 255, 0.2)" stroke-width="1">
+            <line x1="50" y1="-5" x2="50" y2="5" />
+            <line x1="150" y1="-5" x2="150" y2="5" />
+            <line x1="250" y1="-5" x2="250" y2="5" />
+            <line x1="350" y1="-5" x2="350" y2="5" />
+            <line x1="450" y1="-5" x2="450" y2="5" />
+            <line x1="550" y1="-5" x2="550" y2="5" />
+        </g>
+
+        <!-- Moving Playhead -->
+        <g class="playhead-group">
+            <line x1="0" y1="-20" x2="0" y2="20" stroke="#00f0ff" stroke-width="2" filter="url(#light-glow)" />
+            <polygon points="-5,-25 5,-25 0,-15" fill="#00f0ff" />
+            <circle cx="0" cy="0" r="4" fill="#140026" stroke="#00f0ff" stroke-width="2" />
+        </g>
+    </g>
+</svg>

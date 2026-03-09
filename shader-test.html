@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Shader Background Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            color: white;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- This is the canvas where the WebGL shader will be rendered -->
+    <canvas id="glcanvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <div
+        class="relative z-10 p-10 flex flex-col items-center justify-center min-h-screen text-center pointer-events-none">
+        <h1 class="text-6xl font-bold mb-4 drop-shadow-lg">Shader Background Demo</h1>
+        <p class="text-xl max-w-2xl drop-shadow-md bg-black/30 p-4 rounded-xl backdrop-blur-sm">
+            El código que enviaste es un componente de React que configura un motor gráfico (WebGL) dentro de un
+            elemento &lt;canvas&gt;.
+            Se usa típicamente para crear fondos animados complejos y de alto rendimiento usando la tarjeta gráfica
+            (GPU).
+        </p>
+    </div>
+
+    <script>
+        // --- Vertex Shader ---
+        // Se encarga de dibujar un rectángulo que cubra toda la pantalla
+        const vsSource = `
+            attribute vec4 aVertexPosition;
+            void main() {
+                gl_Position = aVertexPosition;
+            }
+        `;
+
+        // --- Fragment Shader ---
+        // Aquí es donde ocurre la magia gráfica (colores, patrones, animaciones)
+        const fsSource = `
+            precision highp float;
+            uniform vec2 iResolution;
+            uniform float iTime;
+
+            void main() {
+                // Coordenadas normalizadas (de 0 a 1)
+                vec2 uv = gl_FragCoord.xy / iResolution.xy;
+                
+                // Efecto de color dinámico moviéndose con el tiempo
+                vec3 col = 0.5 + 0.5 * cos(iTime + uv.xyx + vec3(0, 2, 4));
+                
+                // Añadimos un patrón oscuro ondulado
+                col *= 0.8 + 0.2 * sin(uv.y * 20.0 + iTime * 2.0);
+
+                // Viñeteado (oscurecer bordes)
+                vec2 p = -1.0 + 2.0 * uv;
+                float r = sqrt(dot(p, p));
+                col *= 1.0 - 0.3 * r;
+
+                gl_FragColor = vec4(col, 1.0);
+            }
+        `;
+
+        // Función auxiliar para compilar shaders
+        function loadShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        // Configuración de WebGL basándose en tu código
+        function init() {
+            const canvas = document.getElementById('glcanvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+            if (!gl) {
+                alert('Incapaz de inicializar WebGL. Tu navegador o máquina puede no soportarlo.');
+                return;
+            }
+
+            const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
+            const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+            const shaderProgram = gl.createProgram();
+            gl.attachShader(shaderProgram, vertexShader);
+            gl.attachShader(shaderProgram, fragmentShader);
+            gl.linkProgram(shaderProgram);
+
+            if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+                console.error('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
+                return;
+            }
+
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            const positions = [
+                -1.0, -1.0,
+                1.0, -1.0,
+                -1.0, 1.0,
+                1.0, 1.0,
+            ];
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+            const programInfo = {
+                program: shaderProgram,
+                attribLocations: {
+                    vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
+                },
+                uniformLocations: {
+                    resolution: gl.getUniformLocation(shaderProgram, 'iResolution'),
+                    time: gl.getUniformLocation(shaderProgram, 'iTime'),
+                },
+            };
+
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            };
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            let startTime = Date.now();
+
+            const render = () => {
+                const currentTime = (Date.now() - startTime) / 1000.0;
+
+                gl.clearColor(0.0, 0.0, 0.0, 1.0);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+
+                gl.useProgram(programInfo.program);
+
+                gl.uniform2f(programInfo.uniformLocations.resolution, canvas.width, canvas.height);
+                gl.uniform1f(programInfo.uniformLocations.time, currentTime);
+
+                gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+                gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, 2, gl.FLOAT, false, 0, 0);
+                gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+                requestAnimationFrame(render);
+            };
+
+            requestAnimationFrame(render);
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
