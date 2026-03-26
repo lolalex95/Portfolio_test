@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="loader-ripple"><div></div><div></div></div>
                 </div>
 
-                <video src="${currentVideo.videoSrc}" poster="${currentVideo.poster}" autoplay loop ${isVideoMuted ? 'muted' : ''} playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="portfolio-video-el"></video>
+                <video src="${currentVideo.videoSrc}" autoplay loop ${isVideoMuted ? 'muted' : ''} playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="portfolio-video-el"></video>
                 <button id="toggle-mute-btn" class="absolute top-6 right-6 flex items-center gap-2 px-4 py-2 bg-black/40 hover:bg-primary/80 backdrop-blur-md text-white rounded-full transition-all border border-white/10 group/btn z-20 shadow-lg">
                   <span class="text-xs font-bold tracking-wider opacity-0 group-hover/btn:opacity-100 -translate-x-2 group-hover/btn:translate-x-0 transition-all absolute right-full mr-2 whitespace-nowrap">
                     ${isVideoMuted ? 'Tap to unmute' : 'Mute'}
