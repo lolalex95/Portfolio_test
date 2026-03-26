@@ -133,43 +133,50 @@
         }
         /* Floating Navbar Transitions */
         nav {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 0.4s ease, top 0.4s ease, background-color 0.4s ease, border-radius 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
             width: 100%;
             top: 0;
             left: 0;
-            background: transparent !important;
-            border: none !important;
+            right: 0;
+            margin: 0 auto;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.8) !important;
+            border-bottom: 1px solid rgba(226, 232, 240, 1) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid transparent !important;
+            border-left: 1px solid transparent !important;
+            border-right: 1px solid transparent !important;
+        }
+
+        html.dark nav {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border-bottom: 1px solid rgba(30, 41, 59, 1) !important;
+        }
+
+        nav.nav-scrolled {
+            top: 1rem !important;
+            width: 95% !important;
+            max-width: 1000px !important;
+            border-radius: 999px !important;
+            border: 1px solid rgba(14, 165, 233, 0.2) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1) !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        html.dark nav.nav-scrolled {
+            background: rgba(30, 41, 59, 0.95) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4) !important;
         }
 
         .nav-container {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-            margin: 0 auto;
-            border-bottom: 1px solid rgba(226, 232, 240, 1);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        html.dark .nav-container {
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom: 1px solid rgba(30, 41, 59, 1);
+            transition: height 0.4s ease;
+            height: 80px; 
         }
 
         nav.nav-scrolled .nav-container {
-            margin-top: 1rem !important;
-            width: 95% !important;
-            max-width: 1200px;
             height: 64px !important;
-            border-radius: 999px !important;
-            border: 1px solid rgba(14, 165, 233, 0.2) !important;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        html.dark nav.nav-scrolled .nav-container {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
