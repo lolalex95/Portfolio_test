@@ -13,6 +13,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        /* Shared Card Theme Variables */
+        :root {
+            --card-bg: #ffffff;
+            --card-stroke: #f1f5f9;
+            --card-text: #0f172a;
+            --card-shadow-color: #0f172a;
+            --card-shadow-opacity-1: 0.08;
+            --card-shadow-opacity-2: 0.04;
+            --card-inner-bg: #f8fafc;
+            --card-inner-stroke: #e2e8f0;
+            --card-v-header: #fee2e2;
+            --card-w-header: #dbeafe;
+            --card-w-accent: #3b82f6;
+            --card-p-header: #d1fae5;
+            --card-p-accent: #10b981;
+            --card-track-1: #cbd5e1;
+            --card-track-2: #94a3b8;
+            --card-cursor-fill: #1e293b;
+            --card-cursor-stroke: #ffffff;
+        }
+
+        html.dark {
+            --card-bg: #1e293b;
+            --card-stroke: #334155;
+            --card-text: #f8fafc;
+            --card-shadow-color: #000000;
+            --card-shadow-opacity-1: 0.35;
+            --card-shadow-opacity-2: 0.2;
+            --card-inner-bg: #0f172a;
+            --card-inner-stroke: #334155;
+            --card-v-header: #450a0a;
+            --card-w-header: #1e3a8a;
+            --card-w-accent: #60a5fa;
+            --card-p-header: #064e3b;
+            --card-p-accent: #34d399;
+            --card-track-1: #475569;
+            --card-track-2: #64748b;
+            --card-cursor-fill: #f8fafc;
+            --card-cursor-stroke: #0f172a;
+        }
+    </style>
 </head>
 
 <body
@@ -27,17 +69,31 @@
                 </div>
                 <h1 class="text-xl font-bold tracking-tight">Studio.</h1>
             </div>
-            <div class="hidden md:flex items-center gap-10">
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="#work">Work</a>
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="#motion">Motion</a>
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#work"
+                    class="text-sm font-bold text-slate-500 hover:text-primary transition-colors tracking-wide"
+                    data-i18n="nav.work">Work</a>
+                <a href="#about"
+                    class="text-sm font-bold text-slate-500 hover:text-primary transition-colors tracking-wide"
+                    data-i18n="nav.about">About</a>
+                <a href="#contact"
+                    class="text-sm font-bold text-slate-500 hover:text-primary transition-colors tracking-wide"
+                    data-i18n="nav.contact">Contact</a>
+
+                <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-800">
+                    <button class="lang-toggle-btn text-primary font-bold transition-colors hover:text-primary"
+                        data-lang="en">EN</button>
+                    <span class="text-slate-300 dark:text-slate-700">|</span>
+                    <button class="lang-toggle-btn text-slate-400 font-bold transition-colors hover:text-primary"
+                        data-lang="es">ES</button>
+                </div>
+
+                <button id="theme-toggle"
+                    class="p-2 rounded-full hover:bg-slate-100 dark:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400 ml-2">
+                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                </button>
             </div>
             <div class="flex items-center gap-2 sm:gap-4">
-                <button id="theme-toggle"
-                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-                    <span id="theme-icon" class="material-symbols-outlined text-2xl">light_mode</span>
-                </button>
                 <a class="hidden sm:block px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-opacity"
                     href="#contact">
                     Hire Me
@@ -56,16 +112,25 @@
         class="fixed inset-0 z-[100] bg-background-light dark:bg-background-dark transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-6 px-6 pb-8 h-[100dvh]">
         <div class="flex justify-between items-center mb-12">
             <h1 class="text-xl font-bold tracking-tight">Studio.</h1>
+            <div class="flex items-center gap-4">
+                <button class="lang-toggle-btn text-primary font-bold transition-colors hover:text-primary"
+                    data-lang="en">EN</button>
+                <span class="text-slate-300 dark:text-slate-700">|</span>
+                <button class="lang-toggle-btn text-slate-400 font-bold transition-colors hover:text-primary"
+                    data-lang="es">ES</button>
+            </div>
             <button id="close-menu-btn"
                 class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors border border-slate-200 dark:border-slate-800">
                 <span class="material-symbols-outlined text-2xl">close</span>
             </button>
         </div>
-        <div class="flex flex-col gap-8 text-3xl font-bold tracking-tight">
-            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#work">Work</a>
-            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#motion">Motion</a>
-            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#about">About</a>
-            <a class="mobile-link overflow-hidden hover:text-primary transition-colors" href="#contact">Contact</a>
+        <div class="flex flex-col gap-6 text-2xl font-bold">
+            <a href="#work" class="mobile-nav-link text-slate-900 dark:text-white hover:text-primary"
+                data-i18n="nav.work">Work</a>
+            <a href="#about" class="mobile-nav-link text-slate-900 dark:text-white hover:text-primary"
+                data-i18n="nav.about">About</a>
+            <a href="#contact" class="mobile-nav-link text-slate-900 dark:text-white hover:text-primary"
+                data-i18n="nav.contact">Contact</a>
         </div>
         <div class="mt-auto flex flex-col gap-6">
             <a class="mobile-link w-full text-center py-4 bg-primary text-white text-lg font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
@@ -86,54 +151,837 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
-        <!-- Fondo animado custom (Solo Modo Oscuro) -->
-        <canvas id="hero-glcanvas" class="absolute inset-0 w-full h-full object-cover -z-10 hidden dark:block"></canvas>
+        <!-- Fondo animado custom (Solo Modo Oscuro) eliminado -->
 
         <div class="absolute inset-0 kinetic-grid opacity-50"></div>
         <div
             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl aspect-square bg-primary/5 rounded-full blur-[120px] pointer-events-none">
         </div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6">
-            <div
-                class="relative bg-slate-800/80 dark:bg-slate-900/60 text-white border border-slate-700/50 backdrop-blur-md rounded-[2.5rem] p-8 lg:p-12 xl:p-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center shadow-2xl overflow-hidden">
-                <div class="lg:col-span-7 relative z-10">
-                    <span
-                        class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">Available
-                        for Projects</span>
-                    <h1 class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8">
-                        Presentations <br />
-                        <span class="text-primary">&amp;</span> Video Editor
-                    </h1>
-                    <p class="text-xl md:text-2xl text-slate-300 dark:text-slate-400 max-w-xl leading-relaxed mb-10">
-                        Elevating visual storytelling through high-impact design and precision motion for the world's
-                        leading tech brands.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <button
-                            class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:translate-y-[-2px] transition-all shadow-lg shadow-primary/20">
-                            View Showreel
-                        </button>
-                        <button
-                            class="px-8 py-4 bg-white/10 text-white font-bold rounded-xl hover:translate-y-[-2px] hover:bg-white/20 transition-all border border-white/10 hover:border-white/20">
-                            Our Process
-                        </button>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 relative z-10 w-full">
+                    <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left w-full">
+                        <!-- Profile Picture -->
+                        <div class="relative group flex-shrink-0 mx-auto md:mx-0 w-40 md:w-48">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                            <div class="relative w-full aspect-[3/4] rounded-3xl overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl">
+                                <img src="assets/img/AlexCorp.png" alt="Alex" class="w-full h-full object-cover scale-[1.20] transition-transform duration-500 group-hover:scale-[1.25]">
+                            </div>
+                        </div>
+
+                        <!-- Text Content -->
+                        <div class="flex flex-col items-center md:items-start flex-1 min-w-0 w-full">
+                            <span class="inline-block py-1.5 px-4 rounded-full bg-slate-900 dark:bg-slate-800 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-4 border border-primary/20 shadow-[0_0_15px_rgba(13,89,242,0.15)]" data-i18n="hero.badge">
+                                AVAILABLE FOR PROJECTS
+                            </span>
+                            <h1 class="text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white mb-2 whitespace-nowrap w-full">
+                                <span data-i18n="hero.greeting">Hey! I'm Alex and I</span>
+                                <br/>
+                                <span id="typewriter" class="text-primary inline-block min-h-[1.2em]"></span><span class="text-primary animate-pulse font-light">|</span>
+                            </h1>
+
+                            <!-- Call to Action Buttons -->
+                            <div class="flex flex-nowrap gap-3 mt-8 justify-center md:justify-start w-full">
+                                <button class="px-5 py-3 md:px-6 md:py-3.5 bg-primary text-white font-bold rounded-xl hover:translate-y-[-2px] transition-all shadow-lg shadow-primary/20 text-sm md:text-base whitespace-nowrap" data-i18n="hero.btn.primary">
+                                    View Showreel
+                                </button>
+                                <button class="px-5 py-3 md:px-6 md:py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl hover:translate-y-[-2px] hover:bg-slate-200 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 text-sm md:text-base whitespace-nowrap" data-i18n="hero.btn.secondary">
+                                    Our Process
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="lg:col-span-5 relative">
-                    <div class="w-full aspect-square relative flex items-center justify-center overflow-hidden group">
-                        <img src="video_pipeline.svg" alt="Video Processing Pipeline"
-                            class="w-full h-full object-contain opacity-90 transition-transform duration-700 group-hover:scale-105" />
-                        <!-- Floating Tech Pills -->
-                        <div
-                            class="absolute top-10 right-10 bg-white/10 border border-white/20 text-white p-3 rounded-xl shadow-xl backdrop-blur-md flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary">play_circle</span>
-                            <span class="text-xs font-bold uppercase">4K Rendering</span>
+                <div class="hidden lg:block lg:col-span-5 lg:col-start-8 relative">
+                    <div class="w-full aspect-square relative flex items-center justify-center overflow-visible group">
+                        <!-- New SVG Animation will go here -->
+                        <div id="presentation-animation-container"
+                            class="w-full h-full overflow-visible flex items-center justify-center translate-x-4">
+                            <svg viewBox="160 160 380 260" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                                class="drop-shadow-2xl overflow-visible scale-90 lg:scale-90">
+                                <defs>
+                                    <filter id="card-shadow" x="-30%" y="-30%" width="160%" height="160%">
+                                        <feDropShadow dx="0" dy="12" stdDeviation="16"
+                                            flood-color="var(--card-shadow-color)"
+                                            flood-opacity="var(--card-shadow-opacity-1)" />
+                                        <feDropShadow dx="0" dy="4" stdDeviation="6"
+                                            flood-color="var(--card-shadow-color)"
+                                            flood-opacity="var(--card-shadow-opacity-2)" />
+                                    </filter>
+                                    <g id="card-video">
+                                        <rect width="320" height="200" rx="16" fill="var(--card-bg)"
+                                            filter="url(#card-shadow)" stroke="var(--card-stroke)" stroke-width="2" />
+                                        <rect x="24" y="24" width="36" height="36" rx="10"
+                                            fill="var(--card-v-header)" />
+                                        <path d="M38 48 l0 -12 l10 6 z" fill="#ef4444" />
+                                        <text x="76" y="47" font-family="Space Grotesk, sans-serif" font-size="20"
+                                            font-weight="700" fill="var(--card-text)">Video Editing</text>
+                                        <rect x="24" y="76" width="272" height="100" rx="12" fill="var(--card-inner-bg)"
+                                            stroke="var(--card-inner-stroke)" stroke-width="1" />
+                                        <rect x="40" y="96" width="100" height="12" rx="6" fill="var(--card-track-1)" />
+                                        <rect x="150" y="96" width="80" height="12" rx="6" fill="var(--card-track-2)" />
+                                        <rect x="40" y="120" width="160" height="12" rx="6" fill="#818cf8" />
+                                        <rect x="210" y="120" width="60" height="12" rx="6" fill="#c084fc" />
+                                        <rect x="40" y="144" width="120" height="12" rx="6" fill="#fb7185" />
+                                        <rect x="170" y="144" width="90" height="12" rx="6" fill="#f43f5e" />
+                                        <g class="playhead">
+                                            <line x1="60" y1="80" x2="60" y2="168" stroke="#ef4444" stroke-width="2" />
+                                            <polygon points="54,80 66,80 60,88" fill="#ef4444" />
+                                        </g>
+                                    </g>
+
+                                    <g id="card-web">
+                                        <rect width="320" height="200" rx="16" fill="var(--card-bg)"
+                                            filter="url(#card-shadow)" stroke="var(--card-stroke)" stroke-width="2" />
+                                        <rect x="24" y="24" width="36" height="36" rx="10"
+                                            fill="var(--card-w-header)" />
+                                        <circle cx="42" cy="42" r="8" stroke="var(--card-w-accent)" stroke-width="2.5"
+                                            fill="none" />
+                                        <ellipse cx="42" cy="42" rx="3.5" ry="8" stroke="var(--card-w-accent)"
+                                            stroke-width="2.5" fill="none" />
+                                        <line x1="33" y1="42" x2="51" y2="42" stroke="var(--card-w-accent)"
+                                            stroke-width="2.5" />
+                                        <text x="76" y="47" font-family="Space Grotesk, sans-serif" font-size="20"
+                                            font-weight="700" fill="var(--card-text)">Web Design</text>
+                                        <rect x="24" y="76" width="272" height="100" rx="12" fill="var(--card-inner-bg)"
+                                            stroke="var(--card-inner-stroke)" stroke-width="1" />
+                                        <circle cx="40" cy="90" r="4" fill="#fca5a5" />
+                                        <circle cx="52" cy="90" r="4" fill="#fde047" />
+                                        <circle cx="64" cy="90" r="4" fill="#86efac" />
+                                        <line x1="24" y1="102" x2="296" y2="102" stroke="var(--card-inner-stroke)"
+                                            stroke-width="1" />
+                                        <rect x="36" y="114" width="44" height="48" rx="6" fill="var(--card-track-1)" />
+                                        <rect x="92" y="114" width="140" height="28" rx="6" fill="var(--card-w-header)"
+                                            class="web-hero" />
+                                        <rect x="92" y="150" width="66" height="12" rx="4" fill="var(--card-track-2)" />
+                                        <rect x="166" y="150" width="66" height="12" rx="4"
+                                            fill="var(--card-track-2)" />
+                                        <g class="cursor">
+                                            <path d="M0,0 L11,26 L16,16 L26,11 Z" fill="var(--card-cursor-fill)"
+                                                stroke="var(--card-cursor-stroke)" stroke-width="2" />
+                                        </g>
+                                    </g>
+
+                                    <g id="card-pres">
+                                        <rect width="320" height="200" rx="16" fill="var(--card-bg)"
+                                            filter="url(#card-shadow)" stroke="var(--card-stroke)" stroke-width="2" />
+                                        <rect x="24" y="24" width="36" height="36" rx="10"
+                                            fill="var(--card-p-header)" />
+                                        <rect x="34" y="43" width="4" height="8" rx="1" fill="var(--card-p-accent)" />
+                                        <rect x="40" y="37" width="4" height="14" rx="1" fill="var(--card-p-accent)" />
+                                        <rect x="46" y="33" width="4" height="18" rx="1" fill="var(--card-p-accent)" />
+                                        <text x="76" y="47" font-family="Space Grotesk, sans-serif" font-size="20"
+                                            font-weight="700" fill="var(--card-text)">Presentations</text>
+                                        <rect x="24" y="76" width="272" height="100" rx="12" fill="var(--card-inner-bg)"
+                                            stroke="var(--card-inner-stroke)" stroke-width="1" />
+                                        <line x1="48" y1="156" x2="272" y2="156" stroke="var(--card-track-1)"
+                                            stroke-width="2" stroke-linecap="round" />
+                                        <rect x="64" y="106" width="32" height="48" rx="4" fill="#38bdf8"
+                                            class="bar bar1" />
+                                        <rect x="112" y="86" width="32" height="68" rx="4" fill="#a78bfa"
+                                            class="bar bar2" />
+                                        <rect x="160" y="116" width="32" height="38" rx="4" fill="#f472b6"
+                                            class="bar bar3" />
+                                        <rect x="208" y="96" width="32" height="58" rx="4" fill="#fbbf24"
+                                            class="bar bar4" />
+                                    </g>
+                                </defs>
+
+                                <style>
+                                    .move-c1 {
+                                        animation: move-c1 9s infinite ease-in-out;
+                                        transform-origin: 160px 100px;
+                                    }
+
+                                    .move-c2 {
+                                        animation: move-c2 9s infinite ease-in-out;
+                                        transform-origin: 160px 100px;
+                                    }
+
+                                    .move-c3 {
+                                        animation: move-c3 9s infinite ease-in-out;
+                                        transform-origin: 160px 100px;
+                                    }
+
+                                    @keyframes move-c1 {
+
+                                        0%,
+                                        20% {
+                                            transform: translate(0, 0) scale(1);
+                                            opacity: 1;
+                                        }
+
+                                        26% {
+                                            transform: translate(-15px, -15px) scale(1.05);
+                                            opacity: 0;
+                                        }
+
+                                        26.01% {
+                                            transform: translate(60px, -60px) scale(0.8);
+                                            opacity: 0;
+                                        }
+
+                                        33.33%,
+                                        53.33% {
+                                            transform: translate(60px, -60px) scale(0.8);
+                                            opacity: 1;
+                                        }
+
+                                        66.66%,
+                                        86.66% {
+                                            transform: translate(30px, -30px) scale(0.9);
+                                            opacity: 1;
+                                        }
+
+                                        100% {
+                                            transform: translate(0, 0) scale(1);
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    @keyframes move-c2 {
+
+                                        0%,
+                                        20% {
+                                            transform: translate(30px, -30px) scale(0.9);
+                                            opacity: 1;
+                                        }
+
+                                        33.33%,
+                                        53.33% {
+                                            transform: translate(0, 0) scale(1);
+                                            opacity: 1;
+                                        }
+
+                                        59.33% {
+                                            transform: translate(-15px, -15px) scale(1.05);
+                                            opacity: 0;
+                                        }
+
+                                        59.34% {
+                                            transform: translate(60px, -60px) scale(0.8);
+                                            opacity: 0;
+                                        }
+
+                                        66.66%,
+                                        86.66% {
+                                            transform: translate(60px, -60px) scale(0.8);
+                                            opacity: 1;
+                                        }
+
+                                        100% {
+                                            transform: translate(30px, -30px) scale(0.9);
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    @keyframes move-c3 {
+
+                                        0%,
+                                        20% {
+                                            transform: translate(60px, -60px) scale(0.8);
+                                            opacity: 1;
+                                        }
+
+                                        33.33%,
+                                        53.33% {
+                                            transform: translate(30px, -30px) scale(0.9);
+                                            opacity: 1;
+                                        }
+
+                                        66.66%,
+                                        86.66% {
+                                            transform: translate(0, 0) scale(1);
+                                            opacity: 1;
+                                        }
+
+                                        92.66% {
+                                            transform: translate(-15px, -15px) scale(1.05);
+                                            opacity: 0;
+                                        }
+
+                                        92.67% {
+                                            transform: translate(60px, -60px) scale(0.8);
+                                            opacity: 0;
+                                        }
+
+                                        100% {
+                                            transform: translate(60px, -60px) scale(0.8);
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    .c1-front {
+                                        animation: o-c1-front 9s infinite;
+                                    }
+
+                                    .c1-mid {
+                                        animation: o-c1-mid 9s infinite;
+                                    }
+
+                                    .c1-back {
+                                        animation: o-c1-back 9s infinite;
+                                    }
+
+                                    .c2-front {
+                                        animation: o-c2-front 9s infinite;
+                                    }
+
+                                    .c2-mid {
+                                        animation: o-c2-mid 9s infinite;
+                                    }
+
+                                    .c2-back {
+                                        animation: o-c2-back 9s infinite;
+                                    }
+
+                                    .c3-front {
+                                        animation: o-c3-front 9s infinite;
+                                    }
+
+                                    .c3-mid {
+                                        animation: o-c3-mid 9s infinite;
+                                    }
+
+                                    .c3-back {
+                                        animation: o-c3-back 9s infinite;
+                                    }
+
+                                    @keyframes o-c1-front {
+
+                                        0%,
+                                        26% {
+                                            opacity: 1;
+                                        }
+
+                                        26.01%,
+                                        92.65% {
+                                            opacity: 0;
+                                        }
+
+                                        92.66%,
+                                        100% {
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    @keyframes o-c1-back {
+
+                                        0%,
+                                        25.99% {
+                                            opacity: 0;
+                                        }
+
+                                        26%,
+                                        59.33% {
+                                            opacity: 1;
+                                        }
+
+                                        59.34%,
+                                        100% {
+                                            opacity: 0;
+                                        }
+                                    }
+
+                                    @keyframes o-c1-mid {
+
+                                        0%,
+                                        59.32% {
+                                            opacity: 0;
+                                        }
+
+                                        59.33%,
+                                        92.66% {
+                                            opacity: 1;
+                                        }
+
+                                        92.67%,
+                                        100% {
+                                            opacity: 0;
+                                        }
+                                    }
+
+                                    @keyframes o-c2-mid {
+
+                                        0%,
+                                        26% {
+                                            opacity: 1;
+                                        }
+
+                                        26.01%,
+                                        92.65% {
+                                            opacity: 0;
+                                        }
+
+                                        92.66%,
+                                        100% {
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    @keyframes o-c2-front {
+
+                                        0%,
+                                        25.99% {
+                                            opacity: 0;
+                                        }
+
+                                        26%,
+                                        59.33% {
+                                            opacity: 1;
+                                        }
+
+                                        59.34%,
+                                        100% {
+                                            opacity: 0;
+                                        }
+                                    }
+
+                                    @keyframes o-c2-back {
+
+                                        0%,
+                                        59.32% {
+                                            opacity: 0;
+                                        }
+
+                                        59.33%,
+                                        92.66% {
+                                            opacity: 1;
+                                        }
+
+                                        92.67%,
+                                        100% {
+                                            opacity: 0;
+                                        }
+                                    }
+
+                                    @keyframes o-c3-back {
+
+                                        0%,
+                                        26% {
+                                            opacity: 1;
+                                        }
+
+                                        26.01%,
+                                        92.65% {
+                                            opacity: 0;
+                                        }
+
+                                        92.66%,
+                                        100% {
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    @keyframes o-c3-mid {
+
+                                        0%,
+                                        25.99% {
+                                            opacity: 0;
+                                        }
+
+                                        26%,
+                                        59.33% {
+                                            opacity: 1;
+                                        }
+
+                                        59.34%,
+                                        100% {
+                                            opacity: 0;
+                                        }
+                                    }
+
+                                    @keyframes o-c3-front {
+
+                                        0%,
+                                        59.32% {
+                                            opacity: 0;
+                                        }
+
+                                        59.33%,
+                                        92.66% {
+                                            opacity: 1;
+                                        }
+
+                                        92.67%,
+                                        100% {
+                                            opacity: 0;
+                                        }
+                                    }
+
+                                    .playhead {
+                                        animation: playhead 3s infinite ease-in-out;
+                                    }
+
+                                    @keyframes playhead {
+
+                                        0%,
+                                        100% {
+                                            transform: translateX(0);
+                                        }
+
+                                        50% {
+                                            transform: translateX(180px);
+                                        }
+                                    }
+
+                                    .cursor {
+                                        animation: cursor 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+                                    }
+
+                                    @keyframes cursor {
+
+                                        0%,
+                                        100% {
+                                            transform: translate(140px, 140px);
+                                        }
+
+                                        50% {
+                                            transform: translate(160px, 110px);
+                                        }
+                                    }
+
+                                    .web-hero {
+                                        animation: hero-hover 4s infinite;
+                                    }
+
+                                    @keyframes hero-hover {
+
+                                        0%,
+                                        40%,
+                                        100% {
+                                            fill: var(--card-w-header);
+                                        }
+
+                                        50%,
+                                        60% {
+                                            filter: brightness(1.1);
+                                        }
+                                    }
+
+                                    .bar {
+                                        transform-origin: bottom;
+                                        transform-box: fill-box;
+                                    }
+
+                                    .bar1 {
+                                        animation: b1 2s infinite ease-in-out alternate;
+                                    }
+
+                                    .bar2 {
+                                        animation: b2 2.5s infinite ease-in-out alternate-reverse;
+                                    }
+
+                                    .bar3 {
+                                        animation: b3 3s infinite ease-in-out alternate;
+                                    }
+
+                                    .bar4 {
+                                        animation: b4 2.2s infinite ease-in-out alternate-reverse;
+                                    }
+
+                                    @keyframes b1 {
+                                        0% {
+                                            transform: scaleY(0.5);
+                                        }
+
+                                        100% {
+                                            transform: scaleY(1.1);
+                                        }
+                                    }
+
+                                    @keyframes b2 {
+                                        0% {
+                                            transform: scaleY(0.7);
+                                        }
+
+                                        100% {
+                                            transform: scaleY(1.2);
+                                        }
+                                    }
+
+                                    @keyframes b3 {
+                                        0% {
+                                            transform: scaleY(0.8);
+                                        }
+
+                                        100% {
+                                            transform: scaleY(1.3);
+                                        }
+                                    }
+
+                                    @keyframes b4 {
+                                        0% {
+                                            transform: scaleY(0.6);
+                                        }
+
+                                        100% {
+                                            transform: scaleY(1.1);
+                                        }
+                                    }
+                                </style>
+
+                                <g transform="translate(140, 210)">
+                                    <g class="layer-back">
+                                        <g class="c1-back">
+                                            <use href="#card-video" class="move-c1" />
+                                        </g>
+                                        <g class="c2-back">
+                                            <use href="#card-web" class="move-c2" />
+                                        </g>
+                                        <g class="c3-back">
+                                            <use href="#card-pres" class="move-c3" />
+                                        </g>
+                                    </g>
+                                    <g class="layer-mid">
+                                        <g class="c1-mid">
+                                            <use href="#card-video" class="move-c1" />
+                                        </g>
+                                        <g class="c2-mid">
+                                            <use href="#card-web" class="move-c2" />
+                                        </g>
+                                        <g class="c3-mid">
+                                            <use href="#card-pres" class="move-c3" />
+                                        </g>
+                                    </g>
+                                    <g class="layer-front">
+                                        <g class="c1-front">
+                                            <use href="#card-video" class="move-c1" />
+                                        </g>
+                                        <g class="c2-front">
+                                            <use href="#card-web" class="move-c2" />
+                                        </g>
+                                        <g class="c3-front">
+                                            <use href="#card-pres" class="move-c3" />
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Professional Summary -->
+    <section
+        class="relative overflow-hidden min-h-screen flex items-center justify-center py-16 md:py-24 bg-slate-50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+
+        <!-- Animated Background SVG -->
+        <div
+            class="absolute inset-0 z-0 pointer-events-none opacity-60 dark:opacity-100 transition-opacity duration-300">
+            <svg class="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice"
+                xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <style>
+                        .anim-bg-container {
+                            --bg-color: transparent;
+                            --dot-color: rgba(0, 0, 0, 0.06);
+                            --glow-color: rgba(0, 102, 255, 0.06);
+                            --icon-stroke: rgba(0, 60, 180, 0.4);
+                            --icon-fill: rgba(0, 102, 255, 0.05);
+                            --text-color: rgba(0, 60, 180, 0.8);
+                        }
+
+                        html.dark .anim-bg-container {
+                            --bg-color: transparent;
+                            --dot-color: rgba(255, 255, 255, 0.04);
+                            --glow-color: rgba(0, 150, 255, 0.1);
+                            --icon-stroke: rgba(100, 200, 255, 0.5);
+                            --icon-fill: rgba(0, 150, 255, 0.1);
+                            --text-color: rgba(100, 200, 255, 0.9);
+                        }
+
+                        .bg-rect {
+                            fill: var(--bg-color);
+                            transition: fill 0.5s ease;
+                        }
+
+                        .dot {
+                            fill: var(--dot-color);
+                        }
+
+                        .glow {
+                            fill: var(--glow-color);
+                            filter: blur(100px);
+                        }
+
+                        .tech-icon {
+                            stroke: var(--icon-stroke);
+                            fill: var(--icon-fill);
+                            stroke-width: 1.2;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                        }
+
+                        .icon-label {
+                            font-family: 'Inter', sans-serif;
+                            font-weight: bold;
+                            font-size: 7px;
+                            fill: var(--text-color);
+                            stroke: none;
+                        }
+
+                        @keyframes superFloat {
+                            0% {
+                                opacity: 0;
+                                transform: scale(0.5) translate(-30px, 50px) rotate(-8deg);
+                            }
+
+                            20% {
+                                opacity: 0.7;
+                            }
+
+                            80% {
+                                opacity: 0.5;
+                            }
+
+                            100% {
+                                opacity: 0;
+                                transform: scale(1.4) translate(30px, -80px) rotate(8deg);
+                            }
+                        }
+
+                        .icon-group {
+                            animation-fill-mode: both;
+                        }
+                    </style>
+                    <symbol id="logo-gemini" viewBox="0 0 24 24">
+                        <path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z" />
+                    </symbol>
+                    <symbol id="logo-illustrator" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="3" /><text x="5" y="15"
+                            class="icon-label">Ai</text>
+                    </symbol>
+                    <symbol id="logo-premiere" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="3" /><text x="5" y="15"
+                            class="icon-label">Pr</text>
+                    </symbol>
+                    <symbol id="logo-ae" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="3" /><text x="5" y="15"
+                            class="icon-label">Ae</text>
+                    </symbol>
+                    <symbol id="logo-powerpoint" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" /><text x="8" y="15" class="icon-label">P</text>
+                    </symbol>
+                    <symbol id="logo-keynote" viewBox="0 0 24 24">
+                        <path d="M4 20h16M6 20V8l6-4 6 4v12" /><text x="9" y="14" class="icon-label"
+                            style="font-size:5px">K</text>
+                    </symbol>
+                    <symbol id="logo-canva" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </symbol>
+                    <symbol id="logo-capcut" viewBox="0 0 24 24">
+                        <path d="M4 6h10l6 6-6 6H4z" />
+                        <circle cx="9" cy="12" r="2" />
+                    </symbol>
+                    <pattern id="dotPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1" class="dot" />
+                    </pattern>
+                </defs>
+                <g class="anim-bg-container">
+                    <rect width="100%" height="100%" class="bg-rect" />
+                    <circle cx="10%" cy="20%" r="300" class="glow" />
+                    <circle cx="90%" cy="80%" r="350" class="glow" />
+                    <rect width="100%" height="100%" fill="url(#dotPattern)" />
+                    <g id="main-layer"></g>
+                </g>
+            </svg>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const container = document.getElementById('main-layer');
+                    if (!container) return;
+                    const logos = ['gemini', 'illustrator', 'premiere', 'ae', 'powerpoint', 'keynote', 'canva', 'capcut'];
+                    for (let i = 0; i < 32; i++) {
+                        const type = logos[i % logos.length];
+                        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                        const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+                        group.setAttribute('class', 'icon-group');
+                        use.setAttribute('href', '#logo-' + type);
+                        use.setAttribute('width', '50');
+                        use.setAttribute('height', '50');
+                        use.setAttribute('class', 'tech-icon');
+                        let x, y, valid = false;
+                        while (!valid) {
+                            x = Math.random() * 900 + 50;
+                            y = Math.random() * 900 + 50;
+                            if (!(x > 325 && x < 675 && y > 325 && y < 675)) valid = true; // reserve center area for text
+                        }
+                        use.setAttribute('x', x);
+                        use.setAttribute('y', y);
+                        const duration = 5 + Math.random() * 7;
+                        const delay = Math.random() * -duration;
+                        group.style.transformOrigin = (x + 25) + 'px ' + (y + 25) + 'px';
+                        group.style.animation = 'superFloat ' + duration + 's cubic-bezier(0.4, 0, 0.2, 1) ' + delay + 's infinite';
+                        group.appendChild(use);
+                        container.appendChild(group);
+                    }
+                });
+            </script>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center overflow-hidden relative z-10">
+            <h2 id="summary-text"
+                class="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-sm p-8 rounded-3xl"
+                data-i18n="summary.text">
+                Transforming complex ideas into high-impact digital experiences that drive concrete results.
+            </h2>
+        </div>
+    </section>
+
+    <!-- Presentation Showcase Section -->
+    <section id="showcase-section" class="py-24 max-w-7xl mx-auto px-6 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <!-- Left Side: Video (Larger) -->
+            <div class="lg:col-span-7 relative group/showcase">
+                <div class="absolute -inset-4 bg-primary/10 blur-3xl rounded-full opacity-50 group-hover/showcase:opacity-75 transition duration-1000"></div>
+                <div class="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
+                    <video id="showcase-video" src="assets/img/Final Video FX  (1).mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    
+                    <!-- Mute Toggle Button -->
+                    <button id="showcase-mute-btn" class="absolute top-6 right-6 flex items-center gap-2 px-4 py-2 bg-black/40 hover:bg-primary/80 backdrop-blur-md text-white rounded-full transition-all border border-white/10 z-20 shadow-lg opacity-0 group-hover/showcase:opacity-100 translate-y-2 group-hover/showcase:translate-y-0 duration-300">
+                        <div class="rounded-full bg-white/20 p-1">
+                            <svg id="showcase-mute-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Content & Stats (Smaller) -->
+            <div class="lg:col-span-5 relative z-10">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-i18n="showcase.title">
+                    Cinematic Pitch Decks
+                </h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed" data-i18n="showcase.desc">
+                    Elevating your narrative with world-class motion graphics and strategic design. We transform static slides into immersive visual experiences that capture investor attention and drive high-stakes results.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700/50 hover:border-primary/30 transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-4">trending_up</span>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="showcase.stat1.val">98%</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500" data-i18n="showcase.stat1.label">Success Rate</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700/50 hover:border-primary/30 transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-4">payments</span>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="showcase.stat2.val">$500M+</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500" data-i18n="showcase.stat2.label">Capital Raised</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700/50 hover:border-primary/30 transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-4">shutter_speed</span>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="showcase.stat3.val">15 Days</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500" data-i18n="showcase.stat3.label">Avg. Delivery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section class="py-24 max-w-7xl mx-auto px-6" id="about">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -143,30 +991,51 @@
                     <img alt="AlexCorp Headquarters" class="w-full h-full object-cover transition-all duration-700"
                         data-alt="Modern corporate building of AlexCorp" src="assets/img/AlexCorp.png" />
                 </div>
-                <div class="absolute -bottom-6 -right-6 p-6 bg-primary text-white rounded-2xl shadow-2xl">
-                    <p class="text-3xl font-bold">5+</p>
-                    <p class="text-xs font-bold uppercase tracking-widest opacity-80">Years Exp.</p>
+                <div
+                    class="absolute -bottom-6 -right-6 p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-2xl flex items-center gap-4">
+                    <div class="size-12 bg-primary rounded-2xl flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined text-2xl">verified</span>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-slate-900 dark:text-white leading-none">5+</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                            Years of Expert Design</p>
+                    </div>
                 </div>
             </div>
             <div>
-                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Crafting clarity from complexity.</h2>
-                <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                    I believe that every presentation is a performance and every video is a journey. My mission is to
-                    strip away the noise and highlight the core narrative that moves audiences to action.
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8" data-i18n="about.title">Crafting clarity
+                    from complexity.</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed" data-i18n="about.desc">
+                    I believe that every presentation is a performance, every video is a journey, and every website is a
+                    destination. My mission is to strip away the noise and highlight the core narrative that moves
+                    audiences to action across all digital touchpoints.
                 </p>
                 <div class="grid grid-cols-2 gap-8 mb-10">
                     <div>
-                        <h4 class="font-bold text-primary mb-2">Philosophy</h4>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Minimalism is not the absence of things,
-                            but the perfect amount of them.</p>
+                        <p class="text-4xl font-bold text-primary mb-2" data-i18n="about.stat1.num">200+</p>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest"
+                            data-i18n="about.stat1.text">Decks Designed</p>
                     </div>
                     <div>
-                        <h4 class="font-bold text-primary mb-2">Process</h4>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Strategy first, design second. Every frame
-                            must serve the story.</p>
+                        <p class="text-4xl font-bold text-primary mb-2" data-i18n="about.stat2.num">50+</p>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest"
+                            data-i18n="about.stat2.text">Global Clients</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-6">
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-4xl font-bold text-primary mb-2" data-i18n="about.stat3.num">$100M+</p>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest"
+                            data-i18n="about.stat3.text">Funds Raised</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-primary mb-2" data-i18n="about.stat4.num">AWWWARDS</p>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest"
+                            data-i18n="about.stat4.text">Site of the Day Nominee</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 mt-10">
                     <div class="flex -space-x-3">
                         <div class="size-10 rounded-full border-2 border-background-dark bg-slate-500 overflow-hidden"
                             data-alt="Client avatar one"></div>
@@ -181,235 +1050,164 @@
             </div>
         </div>
     </section>
-    <!-- Work Grid Section -->
-    <section class="py-24 max-w-7xl mx-auto px-6" id="work">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">My Portfolio</h2>
-                <p class="text-slate-500 dark:text-slate-400">A collection of premium pitch decks and cinematic edits.
-                </p>
-            </div>
-            <div class="flex gap-4 border-b border-slate-200 dark:border-slate-800">
-                <button data-filter="all"
-                    class="filter-btn active pb-4 px-2 border-b-2 border-primary text-primary font-bold text-sm transition-all">All
-                    Projects</button>
-                <button data-filter="presentation"
-                    class="filter-btn pb-4 px-2 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all">Presentation</button>
-                <button data-filter="motion"
-                    class="filter-btn pb-4 px-2 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all">Motion</button>
-            </div>
+    <!-- Work Grid Section (Interactive Portfolio) -->
+    <section class="py-24 max-w-7xl mx-auto px-6 relative" id="work">
+        <style>
+            @keyframes fadeIn {
+                0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+                100% { opacity: 1; transform: translateY(0) scale(1); }
+            }
+            .fade-in-section {
+                animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+            .animate-in { opacity: 0; }
+        </style>
+        <div class="mb-12">
+            <h2 class="text-5xl md:text-7xl font-bold tracking-tighter">
+                <span data-i18n="work.title.part1">Selected </span><br class="hidden md:block" />
+                <span class="text-primary italic" data-i18n="work.title.part2">Work.</span>
+            </h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="portfolio-grid">
-            <!-- Project Card 1 -->
-            <div class="project-card group cursor-pointer" data-category="presentation" data-title="Quantum AI Keynote"
-                data-description="A high-stakes presentation designed for the launch of a new AI platform. The goal was to translate complex neural network architectures into digestible, visually striking slides that would captivate investors and tech enthusiasts alike."
-                data-software="Figma, Keynote, Illustrator" data-disciplines="Presentation Design, Data Visualization"
-                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuCzBT1I45IhZiBDQW-oxEncSftlqpbFrlMvwf9FXF1kerNFc3BYtpIbN1t28oBtkKwOsSLfiRKmnf4X1JchQxx386n5hhqrhQnn3p9JShyW9jj4nEhbOOVq9_6ntqCPliN44Ml-NwHtgZMFzuUi9HDQJT65xFtExKF7kA-5b439LYMAPu5ipMD8kAyrTUqyQGc7VQkcjyMmnQZQKhBoIKakFq4YyVU2vn_V5hBkZKDvDdaYUERqVeX2M1UqEHXWnViEonTIpZJwnkc">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
-                    <div
-                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
-                        <div
-                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
-                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        data-alt="Modern tech keynote presentation slides display"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzBT1I45IhZiBDQW-oxEncSftlqpbFrlMvwf9FXF1kerNFc3BYtpIbN1t28oBtkKwOsSLfiRKmnf4X1JchQxx386n5hhqrhQnn3p9JShyW9jj4nEhbOOVq9_6ntqCPliN44Ml-NwHtgZMFzuUi9HDQJT65xFtExKF7kA-5b439LYMAPu5ipMD8kAyrTUqyQGc7VQkcjyMmnQZQKhBoIKakFq4YyVU2vn_V5hBkZKDvDdaYUERqVeX2M1UqEHXWnViEonTIpZJwnkc')">
-                    </div>
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1">Quantum AI Keynote</h3>
-                        <p class="text-slate-500 dark:text-slate-400">Presentation Design • 2024</p>
-                    </div>
-                    <span
-                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">Web3</span>
-                </div>
+
+        <!-- Content Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 min-h-[500px] items-center">
+            <!-- LEFT COLUMN: VISUAL VIEWER -->
+            <div class="lg:col-span-6 xl:col-span-5 flex flex-col justify-center relative" id="portfolio-viewer">
+                <!-- Injected via JS -->
             </div>
-            <!-- Project Card 2 -->
-            <div class="project-card group cursor-pointer" data-category="motion" data-title="Neo-Finance Brand Film"
-                data-description="A fast-paced, kinetic typography and motion graphics brand film for a modern fintech startup. The edit focuses on seamless transitions and rhythmic cuts sync'd to an upbeat electronic track, reflecting the speed of modern finance."
-                data-software="After Effects, Premiere Pro" data-disciplines="Motion Graphics, Video Editing"
-                data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUYIlRW0t9kRJzLT4nazaQRDZlifO1JNZyS3H6Mlq7qw7wG6nzlSIs7elOff9V2iEVGN9o1OcBrRiu6QrzNxX2mdNAOABsO2Y2b149qXbfD3sy8mcLH7B-HPUz68zjeZn49TAlgeIyOxqPCp7ByONnxQfpBSW7_GV4CCsocpasQdSTBfh-J5hiNgaLLnZLIv2DMjTM9iOpbhQCW_q0lwJQFlIFOP6eAbIF7Kzps66W0ffBvp1_sMSoH230kI7O3RWaXLXetpNKpM">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
-                    <div
-                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
-                        <div
-                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
-                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        data-alt="Cinematic video editing montage frame"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLUYIlRW0t9kRJzLT4nazaQRDZlifO1JNZyS3H6Mlq7qw7wG6nzlSIs7elOff9V2iEVGN9o1OcBrRiu6QrzNxX2mdNAOABsO2Y2b149qXbfD3sy8mcLH7B-HPUz68zjeZn49TAlgeIyOxqPCp7ByONnxQfpBSW7_GV4CCsocpasQdSTBfh-J5hiNgaLLnZLIv2DMjTM9iOpbhQCW_q0lwJQFlIFOP6eAbIF7Kzps66W0ffBvp1_sMSoH230kI7O3RWaXLXetpNKpM')">
-                    </div>
+
+            <!-- RIGHT COLUMN: PROJECT LIST & TABS -->
+            <div class="lg:col-span-6 xl:col-span-7 flex flex-col gap-6">
+                <!-- Futuristic Tab Bar -->
+                <div class="relative flex p-1.5 bg-slate-100 dark:bg-slate-800/80 rounded-[1.25rem] border border-slate-200 dark:border-slate-700 backdrop-blur-md shadow-sm w-full">
+                    <!-- Glow Element (Managed by JS) -->
+                    <div id="tab-glow" class="absolute left-1.5 top-1.5 bottom-1.5 w-[33.33%] bg-primary rounded-xl shadow-[0_0_20px_rgba(13,89,242,0.4)] transition-all duration-300 pointer-events-none z-0"></div>
+                    
+                    <button class="portfolio-tab flex-1 relative z-10 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide capitalize transition-colors duration-300 text-white text-center" data-tab="videos" data-i18n="work.filter.motion">
+                        Videos
+                    </button>
+                    <button class="portfolio-tab flex-1 relative z-10 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide capitalize transition-colors duration-300 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white text-center" data-tab="presentations" data-i18n="work.filter.presentation">
+                        Presentations
+                    </button>
+                    <button class="portfolio-tab flex-1 relative z-10 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide capitalize transition-colors duration-300 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white text-center" data-tab="webs" data-i18n="work.filter.web">
+                        Webs
+                    </button>
                 </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1">Neo-Finance Brand Film</h3>
-                        <p class="text-slate-500 dark:text-slate-400">Video Editing • 2023</p>
+
+                <!-- Bounding Box for List -->
+                <div class="bg-slate-50/60 dark:bg-slate-800/20 border border-slate-200/50 dark:border-slate-700/30 rounded-[2rem] p-4 sm:p-6 lg:p-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_-10px_rgba(0,0,0,0.4)]">
+                    <div class="flex flex-col gap-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2 lg:pr-4" id="portfolio-list">
+                        <!-- Injected via JS -->
                     </div>
-                    <span
-                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">Fintech</span>
-                </div>
-            </div>
-            <!-- Project Card 3 -->
-            <div class="project-card group cursor-pointer" data-category="presentation">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
-                    <div
-                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
-                        <div
-                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
-                            <span class="material-symbols-outlined text-primary text-3xl">north_east</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        data-alt="Clean minimalist pitch deck overview"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSmfp3N5lVUEGK8_EMUI6iMPmqPwa9rTHbcdbNtkUPf8mrBCwSfRO1UsKRSUJm3_C0YkRmDRyPz2d-XIRGmp8cS-s-GzCOlUBR4pwYIyNJDCWz6NhgyXVjsnJ3iDLLqySfKYmlorbnH0gapce41vMGptBcaWnpaniXUMPOf_yr6cS-4g7s_9k966yiCt17derC25sdXlvs6IIcxkImrCVSnV5JfqoVhOHtXkOaL_mW0khIaCasjKjvObGkzYDyHU1P4P2MvbRzXRU')">
-                    </div>
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1">Solaris Pitch Deck</h3>
-                        <p class="text-slate-500 dark:text-slate-400">Fundraising Design • 2024</p>
-                    </div>
-                    <span
-                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">SaaS</span>
-                </div>
-            </div>
-            <!-- Project Card 4 -->
-            <div class="project-card group cursor-pointer" data-category="motion">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-6">
-                    <div
-                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
-                        <div
-                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
-                            <span class="material-symbols-outlined text-primary text-3xl">play_arrow</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        data-alt="Kinetic typography motion design sequence"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYgkJ7GdGzkXqdHtQ1POPtqr8H6N-FpK56cOikwwH-4G6wnE5TNxnbnSnpRMDbLNYDn2kY5jCd22xbh73u7CXKOjF1A67qmsnxw1OAWriWe14ZrKJkyV3GUUGFYXg-gEsdQjF7Vhv27f2rWczE_y2__IOofhjyj4O5yhqyUhyVcZM3uqiV6xTlN9hc_yH0BCIIA4bvTviW5YP5ofbBa7_qemSorE3ylww-9HCwtG3LOTQUmgv5f6RebOquHnsU-RKS1RfjWXp9pxY')">
-                    </div>
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1">Ethereal Motion Reel</h3>
-                        <p class="text-slate-500 dark:text-slate-400">Motion Graphics • 2024</p>
-                    </div>
-                    <span
-                        class="text-xs font-bold uppercase tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full">Art</span>
                 </div>
             </div>
         </div>
+
         <div class="mt-16 flex justify-center">
             <a href="portfolio.html"
                 class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:translate-y-[-2px] transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
-                <span>View All Projects</span>
+                <span data-i18n="work.btn.viewall">View All Projects</span>
                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
         </div>
     </section>
-    <!-- Motion Experiments -->
-    <section class="py-24 bg-slate-100 dark:bg-slate-900/50" id="motion">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold tracking-tight mb-4">Motion Experiments</h2>
-                <p class="text-slate-500 dark:text-slate-400">Testing the boundaries of digital fluidity.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div
-                    class="p-8 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded-3xl group">
-                    <div class="h-40 mb-6 flex items-center justify-center">
-                        <svg class="h-full" viewbox="0 0 100 100">
-                            <rect
-                                class="text-primary group-hover:rotate-45 transition-transform duration-500 origin-center"
-                                fill="none" height="50" rx="12" stroke="currentColor" stroke-width="2" width="50" x="25"
-                                y="25"></rect>
-                            <circle class="text-primary/20" cx="50" cy="50" fill="currentColor" r="15"></circle>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">Morphing Geometry</h4>
-                    <p class="text-sm text-slate-500">Exploring CSS transitions through complex SVG path manipulations.
-                    </p>
-                </div>
-                <div
-                    class="p-8 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded-3xl group">
-                    <div class="h-40 mb-6 flex items-center justify-center">
-                        <svg class="h-full" viewbox="0 0 100 100">
-                            <text class="text-primary group-hover:tracking-widest transition-all duration-500"
-                                fill="currentColor" font-size="20" font-weight="900" text-anchor="middle" x="50"
-                                y="55">KINETIC</text>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">Dynamic Type</h4>
-                    <p class="text-sm text-slate-500">Typography that reacts to user interaction and scroll velocity.
-                    </p>
-                </div>
-                <div
-                    class="p-8 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded-3xl group">
-                    <div class="h-40 mb-6 flex items-center justify-center">
-                        <svg class="h-full" viewbox="0 0 100 100">
-                            <path class="text-primary group-hover:translate-x-4 transition-transform duration-500"
-                                d="M20 50 Q 50 20 80 50 T 20 50" fill="none" stroke="currentColor" stroke-width="2">
-                            </path>
-                            <path
-                                class="text-primary/40 group-hover:translate-x-[-4px] transition-transform duration-500"
-                                d="M20 60 Q 50 30 80 60 T 20 60" fill="none" stroke="currentColor" stroke-width="2">
-                            </path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">Liquid Physics</h4>
-                    <p class="text-sm text-slate-500">Simulating fluid motion with Bézier curves and dynamic easing.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Contact Section -->
-    <section class="py-24 border-t border-slate-200 dark:border-slate-800" id="contact">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-10">
-                Let's create something <br />
-                <span class="text-primary italic">great together.</span>
-            </h2>
-            <div class="flex flex-col items-center gap-8">
-                <a class="text-2xl md:text-4xl font-medium hover:text-primary transition-colors underline underline-offset-8 decoration-primary/30"
-                    href="mailto:hello@studio.com">
+    <section class="py-24 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden" id="contact">
+        <div class="absolute inset-0 kinetic-grid opacity-30 pointer-events-none"
+            style="mask-image: radial-gradient(circle at center, black 0%, transparent 70%);"></div>
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <!-- Direct Contact -->
+            <div class="text-center lg:text-left">
+                <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8">
+                    <span data-i18n="contact.title.part1">Let's create something</span> <br class="hidden lg:block" />
+                    <span class="text-primary italic" data-i18n="contact.title.part2">great together.</span>
+                </h2>
+                <a class="inline-block text-2xl md:text-4xl font-medium text-slate-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors underline underline-offset-8 decoration-primary/30 mb-10"
+                    href="mailto:hello@studio.design">
                     hello@studio.design
                 </a>
-                <div class="flex gap-6 mt-4">
-                    <a class="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all"
+                <div class="flex gap-6 justify-center lg:justify-start">
+                    <a class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm hover:shadow-lg hover:shadow-primary/20"
                         href="#">
-                        <span class="material-symbols-outlined">share</span>
+                        <span class="material-symbols-outlined text-xl">share</span>
                     </a>
-                    <a class="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all"
+                    <a class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm hover:shadow-lg hover:shadow-primary/20"
                         href="#">
-                        <span class="material-symbols-outlined">movie</span>
+                        <span class="material-symbols-outlined text-xl">movie</span>
                     </a>
-                    <a class="p-3 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all"
+                    <a class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm hover:shadow-lg hover:shadow-primary/20"
                         href="#">
-                        <span class="material-symbols-outlined">link</span>
+                        <span class="material-symbols-outlined text-xl">link</span>
                     </a>
                 </div>
             </div>
+
+            <!-- Contact Form -->
+            <div
+                class="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 shadow-xl">
+                <h3 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white" data-i18n="contact.form.title">
+                    Project Inquiry</h3>
+                <form class="space-y-6">
+                    <div>
+                        <label for="name"
+                            class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wider"
+                            data-i18n="contact.form.label.name">Full
+                            Name</label>
+                        <input type="text" id="name"
+                            class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                            placeholder="John Doe" data-i18n="contact.form.placeholder.name">
+                    </div>
+                    <div>
+                        <label for="email"
+                            class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wider"
+                            data-i18n="contact.form.label.email">Email
+                            Address</label>
+                        <input type="email" id="email"
+                            class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                            placeholder="john@company.com" data-i18n="contact.form.placeholder.email">
+                    </div>
+                    <div>
+                        <label for="message"
+                            class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wider"
+                            data-i18n="contact.form.label.desc">Project
+                            Description</label>
+                        <textarea id="message" rows="4"
+                            class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                            placeholder="Tell me about your timeline, budget, and goals..."
+                            data-i18n="contact.form.placeholder.desc"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-blue-600 transition-colors shadow-lg shadow-primary/30 flex items-center justify-center gap-2">
+                        <span data-i18n="contact.form.btn">Send Message</span>
+                        <span class="material-symbols-outlined text-sm">send</span>
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
-    <footer class="py-12 border-t border-slate-200 dark:border-slate-800">
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-sm text-slate-500">© 2024 Studio Design. Built with passion and precision.</p>
-            <div class="flex gap-8 text-sm font-bold uppercase tracking-widest text-slate-400">
-                <a class="hover:text-primary transition-colors" href="#">Behance</a>
-                <a class="hover:text-primary transition-colors" href="#">Dribbble</a>
-                <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+            <h1 class="text-xl font-bold tracking-tight">Studio.</h1>
+            <p class="text-slate-500 text-sm font-medium" data-i18n="footer.copyright">
+                &copy; 2026 AlexCorp Studio. All rights reserved.
+            </p>
+            <div class="flex gap-6">
+                <a class="text-slate-400 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest"
+                    href="#" data-i18n="footer.social">Social</a>
             </div>
         </div>
     </footer>
 
+    <!-- Translations Script before main logic -->
+    <script src="assets/js/translations.js"></script>
+    <!-- GSAP & ScrollTrigger & TextPlugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <!-- Custom WebGL Shader Background -->
-    <script src="assets/js/hero-shader.js"></script>
+    <!-- Custom WebGL Shader Background eliminado -->
 
     <!-- Project Details Modal -->
     <div id="project-modal"

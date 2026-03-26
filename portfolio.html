@@ -29,56 +29,137 @@
                 </div>
                 <h1 class="text-xl font-bold tracking-tight">Studio.</h1>
             </a>
-            <div class="hidden md:flex items-center gap-10">
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#work">Work</a>
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#motion">Motion</a>
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#about">About</a>
-                <a class="text-sm font-medium hover:text-primary transition-colors"
-                    href="index.html#contact">Contact</a>
-            </div>
-            <div class="flex items-center gap-4">
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium hover:text-primary transition-colors tracking-wide" href="index.html#work"
+                    data-i18n="nav.work">Work</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors tracking-wide"
+                    href="index.html#about" data-i18n="nav.about">About</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors tracking-wide"
+                    href="index.html#contact" data-i18n="nav.contact">Contact</a>
+
+                <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-800">
+                    <button class="lang-toggle-btn text-primary font-bold transition-colors hover:text-primary"
+                        data-lang="en">EN</button>
+                    <span class="text-slate-300 dark:text-slate-700">|</span>
+                    <button class="lang-toggle-btn text-slate-400 font-bold transition-colors hover:text-primary"
+                        data-lang="es">ES</button>
+                </div>
+
                 <button id="theme-toggle"
-                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400 ml-2">
                     <span id="theme-icon" class="material-symbols-outlined text-2xl">light_mode</span>
                 </button>
-                <a class="hidden sm:block px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-opacity"
-                    href="index.html#contact">
-                    Hire Me
-                </a>
             </div>
         </div>
     </nav>
 
     <!-- All Projects Header -->
-    <div class="pt-24 pb-12 max-w-7xl mx-auto px-6 relative">
-        <div class="absolute inset-0 kinetic-grid opacity-20 pointer-events-none"
-            style="mask-image: linear-gradient(to bottom, black, transparent);"></div>
+    <div class="pt-32 pb-20 max-w-7xl mx-auto px-6 relative overflow-visible">
+        <!-- Minimalist Background SVG -->
+        <div class="absolute top-0 right-0 w-1/3 h-full pointer-events-none opacity-20 dark:opacity-10 z-0">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                <circle cx="150" cy="50" r="80" stroke="var(--tw-primary)" stroke-width="0.5" class="animate-float" />
+                <path d="M0 150 Q 50 100 100 150 T 200 150" stroke="var(--tw-primary)" stroke-width="0.5"
+                    class="animate-draw" />
+            </svg>
+        </div>
+
         <a href="index.html#work"
-            class="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-primary transition-colors mb-8 relative z-10">
-            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            class="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-primary transition-colors mb-12 relative z-10 group"
+            data-i18n="portfolio.back">
+            <span
+                class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
             Back to Home
         </a>
-        <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 relative z-10">All <span
-                class="text-primary">Projects</span></h1>
-        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed relative z-10">
-            Explore the complete archive of presentation designs, kinetic motion reels, and brand films crafted over the
-            years.
-        </p>
+        <div class="max-w-4xl relative z-10">
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 text-slate-900 dark:text-white">
+                <span data-i18n="portfolio.title.part1">All </span><span class="text-primary italic"
+                    data-i18n="portfolio.title.part2">Projects.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed"
+                data-i18n="portfolio.subtitle">
+                A curated archive of high-impact presentations, cinematic motion designs, and conversion-focused web
+                experiences created for global tech leaders.
+            </p>
+        </div>
     </div>
 
     <!-- Filter Section -->
     <section class="pb-24 max-w-7xl mx-auto px-6">
         <div class="flex border-b border-slate-200 dark:border-slate-800 mb-12">
             <button data-filter="all"
-                class="filter-btn active pb-4 px-6 border-b-2 border-primary text-primary font-bold text-sm transition-all sm:text-base">All
+                class="filter-btn active pb-4 px-6 border-b-2 border-primary text-primary font-bold text-sm transition-all sm:text-base"
+                data-i18n="work.filter.all">All
                 Projects</button>
             <button data-filter="presentation"
-                class="filter-btn pb-4 px-6 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all sm:text-base">Presentation</button>
+                class="filter-btn pb-4 px-6 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all sm:text-base"
+                data-i18n="work.filter.presentation">Presentation</button>
             <button data-filter="motion"
-                class="filter-btn pb-4 px-6 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all sm:text-base">Motion</button>
+                class="filter-btn pb-4 px-6 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all sm:text-base"
+                data-i18n="work.filter.motion">Motion</button>
+            <button data-filter="web"
+                class="filter-btn pb-4 px-6 border-b-2 border-transparent text-slate-400 font-bold text-sm hover:text-slate-600 dark:hover:text-slate-200 transition-all sm:text-base"
+                data-i18n="work.filter.web">Web
+                Design</button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+            <!-- Project Card Web 1 -->
+            <div class="project-card group cursor-pointer" data-category="web" data-title="Nexus SaaS Architecture"
+                data-description="A comprehensive web design system for a complex enterprise SaaS product. Focus was on creating clear data visualization patterns and a scalable UI component library."
+                data-software="Figma, React, Tailwind CSS" data-disciplines="UI/UX Design, Design Systems"
+                data-image="assets/img/web_dashboard.png">
+                <div
+                    class="relative aspect-video rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-slate-800">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">desktop_windows</span>
+                        </div>
+                    </div>
+                    <img src="assets/img/web_dashboard.png"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="SaaS Dashboard Design">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Nexus SaaS UI</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Web Design • 2024</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">SaaS</span>
+                </div>
+            </div>
+
+            <!-- Project Card Web 2 -->
+            <div class="project-card group cursor-pointer" data-category="web" data-title="Horology E-commerce"
+                data-description="A minimalist, high-end e-commerce experience designed for a luxury watch brand. The UI emphasizes white space, crisp typography, and high-fidelity product imagery to drive premium conversions."
+                data-software="Figma, Next.js" data-disciplines="Web Design, E-commerce Strategy"
+                data-image="assets/img/web_ecommerce.png">
+                <div
+                    class="relative aspect-video rounded-2xl overflow-hidden mb-6 bg-white border border-slate-200 dark:border-slate-800">
+                    <div
+                        class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                            <span class="material-symbols-outlined text-primary text-3xl">desktop_windows</span>
+                        </div>
+                    </div>
+                    <img src="assets/img/web_ecommerce.png"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Luxury E-commerce Design">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Horology Platform</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Web Design • 2023</p>
+                    </div>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 px-2 py-1 rounded-full">Retail</span>
+                </div>
+            </div>
+
             <!-- Project 1 (Presentation) -->
             <div class="project-card group cursor-pointer" data-category="presentation" data-title="Quantum AI Keynote"
                 data-description="A visually stunning keynote presentation crafted for a cutting-edge web3 AI platform. The slides translate complex neural network architectures into simple, digestible diagrams the audience can understand."
@@ -623,6 +704,8 @@
         </div>
     </footer>
 
+    <!-- Translations Script before main logic -->
+    <script src="assets/js/translations.js"></script>
     <script src="assets/js/main.js"></script>
 
     <!-- Project Details Modal -->

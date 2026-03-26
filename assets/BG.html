@@ -1,0 +1,169 @@
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Sistema de Colores Dinámico con Variables CSS -->
+    <style>
+      :root {
+        --bg-color: #f4f6f9;
+        --dot-color: rgba(0, 0, 0, 0.06);
+        --glow-color: rgba(0, 102, 255, 0.06);
+        --icon-stroke: rgba(0, 60, 180, 0.4);
+        --icon-fill: rgba(0, 102, 255, 0.05);
+        --text-color: rgba(0, 60, 180, 0.8);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-color: #0b0d12;
+          --dot-color: rgba(255, 255, 255, 0.04);
+          --glow-color: rgba(0, 150, 255, 0.1);
+          --icon-stroke: rgba(100, 200, 255, 0.5);
+          --icon-fill: rgba(0, 150, 255, 0.1);
+          --text-color: rgba(100, 200, 255, 0.9);
+        }
+      }
+
+      .bg-rect { fill: var(--bg-color); transition: fill 0.5s ease; }
+      .dot { fill: var(--dot-color); }
+      .glow { fill: var(--glow-color); filter: blur(100px); }
+      
+      .tech-icon {
+        stroke: var(--icon-stroke);
+        fill: var(--icon-fill);
+        stroke-width: 1.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      .icon-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: bold;
+        font-size: 7px;
+        fill: var(--text-color);
+        stroke: none;
+      }
+
+      /* Animación: Más rápida y con mayor rango de movimiento */
+      @keyframes superFloat {
+        0% { 
+          opacity: 0; 
+          transform: scale(0.5) translate(-30px, 50px) rotate(-8deg); 
+        }
+        20% { 
+          opacity: 0.7; 
+        }
+        80% { 
+          opacity: 0.5; 
+        }
+        100% { 
+          opacity: 0; 
+          transform: scale(1.4) translate(30px, -80px) rotate(8deg); 
+        }
+      }
+
+      .icon-group {
+        animation-fill-mode: both;
+      }
+    </style>
+
+    <!-- Definición de Logos Específicos -->
+    <symbol id="logo-gemini" viewBox="0 0 24 24">
+      <path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z" />
+    </symbol>
+    <symbol id="logo-illustrator" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="3" />
+      <text x="5" y="15" class="icon-label">Ai</text>
+    </symbol>
+    <symbol id="logo-premiere" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="3" />
+      <text x="5" y="15" class="icon-label">Pr</text>
+    </symbol>
+    <symbol id="logo-ae" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="3" />
+      <text x="5" y="15" class="icon-label">Ae</text>
+    </symbol>
+    <symbol id="logo-powerpoint" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" />
+      <text x="8" y="15" class="icon-label">P</text>
+    </symbol>
+    <symbol id="logo-keynote" viewBox="0 0 24 24">
+      <path d="M4 20h16M6 20V8l6-4 6 4v12" />
+      <text x="9" y="14" class="icon-label" style="font-size:5px">K</text>
+    </symbol>
+    <symbol id="logo-canva" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    </symbol>
+    <symbol id="logo-capcut" viewBox="0 0 24 24">
+      <path d="M4 6h10l6 6-6 6H4z" />
+      <circle cx="9" cy="12" r="2" />
+    </symbol>
+
+    <!-- Patrón de Puntos de Fondo -->
+    <pattern id="dotPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" class="dot" />
+    </pattern>
+  </defs>
+
+  <!-- Fondo Base -->
+  <rect width="100%" height="100%" class="bg-rect" />
+  
+  <!-- Halos de Luz Ambiente -->
+  <circle cx="10%" cy="20%" r="300" class="glow" />
+  <circle cx="90%" cy="80%" r="350" class="glow" />
+
+  <!-- Rejilla -->
+  <rect width="100%" height="100%" fill="url(#dotPattern)" />
+
+  <!-- Capa de Iconos -->
+  <g id="main-layer"></g>
+
+  <script><![CDATA[
+    const container = document.getElementById('main-layer');
+    const logos = [
+      'gemini', 'illustrator', 'premiere', 'ae', 
+      'powerpoint', 'keynote', 'canva', 'capcut'
+    ];
+    // Incrementado a 32 para mayor densidad
+    const totalIcons = 32; 
+    
+    function spawnIcons() {
+      for (let i = 0; i < totalIcons; i++) {
+        const type = logos[i % logos.length];
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        
+        group.setAttribute('class', 'icon-group');
+        use.setAttribute('href', `#logo-${type}`);
+        use.setAttribute('width', '50');
+        use.setAttribute('height', '50');
+        use.setAttribute('class', 'tech-icon');
+
+        // Distribución: Evitar centro 35%
+        let x, y;
+        let valid = false;
+        while (!valid) {
+          x = Math.random() * 900 + 50;
+          y = Math.random() * 900 + 50;
+          if (!(x > 325 && x < 675 && y > 325 && y < 675)) {
+            valid = true;
+          }
+        }
+
+        use.setAttribute('x', x);
+        use.setAttribute('y', y);
+
+        // Animación acelerada: de 5s a 12s
+        const duration = 5 + Math.random() * 7;
+        const delay = Math.random() * -duration;
+        
+        group.style.transformOrigin = `${x + 25}px ${y + 25}px`;
+        group.style.animation = `superFloat ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s infinite`;
+        
+        group.appendChild(use);
+        container.appendChild(group);
+      }
+    }
+
+    window.onload = spawnIcons;
+  ]]></script>
+</svg>
