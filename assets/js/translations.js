@@ -4,6 +4,7 @@ const translations = {
         "nav.work": "Work",
         "nav.about": "About",
         "nav.contact": "Contact",
+        "nav.theme": "Theme",
         
         // Hero
         "hero.badge": "Available for Projects",
@@ -99,6 +100,7 @@ const translations = {
         "nav.work": "Trabajo",
         "nav.about": "Sobre Mí",
         "nav.contact": "Contacto",
+        "nav.theme": "Tema",
         
         // Hero
         "hero.badge": "Disponible para Proyectos",

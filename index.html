@@ -14,6 +14,13 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
+        /* Global Overflow Fix */
+        html, body {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            position: relative;
+        }
+
         /* Shared Card Theme Variables */
         :root {
             --card-bg: #ffffff;
@@ -133,10 +140,14 @@
                 data-i18n="nav.contact">Contact</a>
         </div>
         <div class="mt-auto flex flex-col gap-6">
-            <a class="mobile-link w-full text-center py-4 bg-primary text-white text-lg font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
-                href="#contact">
-                Hire Me
-            </a>
+            <!-- Mobile Theme Toggle -->
+            <button id="theme-toggle-mobile" class="w-full flex items-center justify-between px-6 py-4 bg-slate-100 dark:bg-slate-800 rounded-xl transition-all border border-slate-200 dark:border-slate-700">
+                <span class="text-lg font-bold text-slate-900 dark:text-white" data-i18n="nav.theme">Theme</span>
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined" id="theme-icon-mobile">dark_mode</span>
+                </div>
+            </button>
+
             <div class="flex justify-center gap-6 mt-2">
                 <a class="p-3 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-primary hover:text-white transition-all text-slate-600 dark:text-slate-400"
                     href="#"><span class="material-symbols-outlined">share</span></a>

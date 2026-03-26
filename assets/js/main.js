@@ -1,15 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle
+    // Theme Toggle (Desktop & Mobile Sync)
     const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
     const themeIcon = document.getElementById('theme-icon');
+    const themeIconMobile = document.getElementById('theme-icon-mobile');
     const html = document.documentElement;
 
-    if (themeToggleBtn && themeIcon) {
+    const updateThemeIcons = () => {
+        const isDark = html.classList.contains('dark');
+        if (themeIcon) themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+        if (themeIconMobile) themeIconMobile.textContent = isDark ? 'light_mode' : 'dark_mode';
+    };
+
+    if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             html.classList.toggle('dark');
-            themeIcon.textContent = html.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+            updateThemeIcons();
         });
     }
+
+    if (themeToggleMobileBtn) {
+        themeToggleMobileBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            updateThemeIcons();
+        });
+    }
+
+    // Initialize icons on load
+    updateThemeIcons();
 
     // i18n Translation Logic
     const langToggleBtns = document.querySelectorAll('.lang-toggle-btn');
