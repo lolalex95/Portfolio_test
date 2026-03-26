@@ -137,31 +137,39 @@
             width: 100%;
             top: 0;
             left: 0;
+            background: transparent !important;
+            border: none !important;
         }
 
         .nav-container {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(226, 232, 240, 1);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        nav.nav-scrolled {
-            top: 0 !important;
-            left: 0 !important;
-            transform: none !important;
-            width: 100% !important;
-            border-bottom-left-radius: 2rem !important;
-            border-bottom-right-radius: 2rem !important;
-            border-bottom: 1px solid rgba(14, 165, 233, 0.2);
-            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.08);
+        html.dark .nav-container {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(30, 41, 59, 1);
         }
 
         nav.nav-scrolled .nav-container {
-            height: 60px !important;
+            margin-top: 1rem !important;
+            width: 95% !important;
+            max-width: 1200px;
+            height: 64px !important;
+            border-radius: 999px !important;
+            border: 1px solid rgba(14, 165, 233, 0.2) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
         }
 
-        html.dark nav.nav-scrolled {
-            background: rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4);
+        html.dark nav.nav-scrolled .nav-container {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
@@ -169,9 +177,8 @@
 <body
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
     <!-- Top Navigation -->
-    <nav
-        class="fixed top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md transition-all duration-500">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between nav-container">
+    <nav class="fixed top-0 z-50 w-full transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between nav-container transition-all">
             <div class="flex items-center gap-3">
                 <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
                     <span class="material-symbols-outlined text-xl">grid_view</span>
