@@ -120,6 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             html = `
               <div class="relative group w-full ${maxWidth} mx-auto ${aspect} bg-slate-900 rounded-[2rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] transition-all duration-500 fade-in-section border-[6px] border-slate-900/50 dark:border-slate-800">
+                <!-- Loading Animation -->
+                <div id="portfolio-loader" class="video-loader">
+                    <div class="loader-ripple"><div></div><div></div></div>
+                </div>
+
                 <video src="${currentVideo.videoSrc}" poster="${currentVideo.poster}" autoplay loop ${isVideoMuted ? 'muted' : ''} playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" id="portfolio-video-el"></video>
                 <button id="toggle-mute-btn" class="absolute top-6 right-6 flex items-center gap-2 px-4 py-2 bg-black/40 hover:bg-primary/80 backdrop-blur-md text-white rounded-full transition-all border border-white/10 group/btn z-20 shadow-lg">
                   <span class="text-xs font-bold tracking-wider opacity-0 group-hover/btn:opacity-100 -translate-x-2 group-hover/btn:translate-x-0 transition-all absolute right-full mr-2 whitespace-nowrap">
@@ -231,6 +236,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         videoEl.msRequestFullscreen();
                     }
                 });
+            }
+
+            // Hide loader when video is ready
+            if (videoEl) {
+                if (videoEl.readyState >= 3) {
+                    hideLoader('portfolio-loader');
+                } else {
+                    videoEl.addEventListener('canplay', () => hideLoader('portfolio-loader'), { once: true });
+                }
             }
         } else if (currentTab === 'presentations') {
             const thumbs = document.querySelectorAll('.pres-thumb');
@@ -667,20 +681,35 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-    // Showcase Video Mute Toggle
+    // --- VIDEO LOADING LOGIC ---
+    const hideLoader = (id) => {
+        const loader = document.getElementById(id);
+        if (loader) loader.classList.add('hidden');
+    };
+
+    // Showcase Video Loader & Mute Toggle
     const showcaseVideo = document.getElementById('showcase-video');
     const showcaseMuteBtn = document.getElementById('showcase-mute-btn');
     const showcaseMuteIcon = document.getElementById('showcase-mute-icon');
 
-    if (showcaseVideo && showcaseMuteBtn) {
-        showcaseMuteBtn.addEventListener('click', () => {
-            showcaseVideo.muted = !showcaseVideo.muted;
-            if (showcaseVideo.muted) {
-                showcaseMuteIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
-            } else {
-                showcaseMuteIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>';
-            }
-        });
+    if (showcaseVideo) {
+        // Hide loader when video is ready
+        if (showcaseVideo.readyState >= 3) {
+            hideLoader('showcase-loader');
+        } else {
+            showcaseVideo.addEventListener('canplay', () => hideLoader('showcase-loader'), { once: true });
+        }
+
+        if (showcaseMuteBtn) {
+            showcaseMuteBtn.addEventListener('click', () => {
+                showcaseVideo.muted = !showcaseVideo.muted;
+                if (showcaseVideo.muted) {
+                    showcaseMuteIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+                } else {
+                    showcaseMuteIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>';
+                }
+            });
+        }
     }
 
     // --- TYPEWRITER EFFECT ---

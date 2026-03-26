@@ -61,6 +61,76 @@
             --card-cursor-fill: #f8fafc;
             --card-cursor-stroke: #0f172a;
         }
+        /* Video Loader Animation */
+        .video-loader {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.4);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            z-index: 30;
+            transition: opacity 0.5s ease, visibility 0.5s;
+            border-radius: inherit;
+        }
+
+        .video-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-ripple {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .loader-ripple div {
+            position: absolute;
+            border: 4px solid #0ea5e9;
+            opacity: 1;
+            border-radius: 50%;
+            animation: loader-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+        }
+
+        .loader-ripple div:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+
+        @keyframes loader-ripple {
+            0% {
+                top: 36px;
+                left: 36px;
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            4.9% {
+                top: 36px;
+                left: 36px;
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            5% {
+                top: 36px;
+                left: 36px;
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                top: 0px;
+                left: 0px;
+                width: 72px;
+                height: 72px;
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -948,6 +1018,11 @@
             <div class="lg:col-span-7 relative group/showcase">
                 <div class="absolute -inset-4 bg-primary/10 blur-3xl rounded-full opacity-50 group-hover/showcase:opacity-75 transition duration-1000"></div>
                 <div class="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
+                    <!-- Loading Animation -->
+                    <div id="showcase-loader" class="video-loader">
+                        <div class="loader-ripple"><div></div><div></div></div>
+                    </div>
+                    
                     <video id="showcase-video" src="assets/img/Final Video FX  (1).mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
                     
                     <!-- Mute Toggle Button -->
