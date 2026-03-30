@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Creative Stack - Professional UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --card-w: 400px;
+            --card-h: 560px;
+            --anim-speed: 12s;
+            --thickness: 12px;
+            --grid-color: rgba(99, 102, 241, 0.12);
+        }
+
+        body {
+            background-color: #020205;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0;
+            background: radial-gradient(circle at center, #0d0d21 0%, #020205 100%);
+        }
+
+        .scene {
+            /* Field of View bajo (30-45 deg) = perspective alto para compresión sutil y menor distorsión */
+            perspective: 3500px; 
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .surface-grid {
+            position: absolute;
+            width: 250%;
+            height: 250%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            /* Aplicación exacta de la cámara al grid (Espejada hacia la izquierda) */
+            transform: rotateX(38deg) rotateY(-25deg) rotateZ(30deg) translateY(0%);
+            mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .stack {
+            width: var(--card-w);
+            height: var(--card-h);
+            position: relative;
+            transform-style: preserve-3d;
+            /* APLICACIÓN MATEMÁTICA DE LA CÁMARA (Espejada):
+               Pitch: 38deg
+               Y-Axis: -25deg (Invertido)
+               Yaw/Z: 30deg (Invertido) */
+            transform: rotateX(38deg) rotateY(-25deg) rotateZ(30deg) translateY(-10px);
+        }
+
+        .card {
+            position: absolute;
+            inset: 0;
+            border-radius: 48px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backface-visibility: hidden;
+            overflow: hidden;
+            /* Sombra y grosor invertidos en el eje X para coincidir con la orientación a la izquierda */
+            box-shadow: 
+                -1px 1px 0 rgba(255,255,255,0.05),
+                calc(var(--thickness) * -0.8) calc(var(--thickness) * 0.8) 0 rgba(0,0,0,0.6),
+                -30px 40px 90px rgba(0,0,0,0.7);
+            animation: infinite-stack-flow var(--anim-speed) infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Sincronización del loop infinito de 3 capas */
+        .card:nth-child(1) { animation-delay: 0s; }
+        .card:nth-child(2) { animation-delay: calc(var(--anim-speed) / -3); }
+        .card:nth-child(3) { animation-delay: calc(var(--anim-speed) / -1.5); }
+
+        @keyframes infinite-stack-flow {
+            0%, 28% { transform: translateX(0) translateZ(80px) translateY(0); z-index: 30; opacity: 1; filter: brightness(1.1); }
+            33% { transform: translateX(450px) translateZ(80px) translateY(0); opacity: 0; z-index: 30; } /* Se desliza a la derecha */
+            33.1% { transform: translateX(0) translateZ(-120px) translateY(180px); z-index: 1; opacity: 0; }
+            38%, 62% { transform: translateX(0) translateZ(-50px) translateY(100px); z-index: 10; opacity: 0.45; filter: brightness(0.6) blur(2px); }
+            66%, 95% { transform: translateX(0) translateZ(15px) translateY(50px); z-index: 20; opacity: 0.85; filter: brightness(0.9); }
+            100% { transform: translateX(0) translateZ(80px) translateY(0); z-index: 30; opacity: 1; filter: brightness(1.1); }
+        }
+
+        .card-video { background: linear-gradient(135deg, #1e1b4b 0%, #0f0c29 100%); }
+        .card-pres { background: linear-gradient(135deg, #451a03 0%, #1c0a00 100%); }
+        .card-web { background: linear-gradient(135deg, #064e3b 0%, #022c22 100%); }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+        }
+
+        /* ANIMACIÓN VIDEO: TIMELINE Y KEYFRAMES */
+        .timeline-track {
+            height: 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 4px;
+            position: relative;
+        }
+        .clip {
+            position: absolute;
+            height: 100%;
+            border-radius: 4px;
+            border-left: 2px solid rgba(255,255,255,0.2);
+        }
+        .keyframe {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #a855f7;
+            transform: rotate(45deg);
+            top: 2px;
+            box-shadow: 0 0 10px #a855f7;
+            animation: kf-glow 2s infinite alternate;
+        }
+        @keyframes kf-glow { from { opacity: 0.3; } to { opacity: 1; } }
+        
+        .playhead-line {
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            width: 2px;
+            background: #fff;
+            box-shadow: 0 0 15px #fff;
+            z-index: 10;
+            animation: playhead-move 6s infinite linear;
+        }
+        @keyframes playhead-move { 0% { left: 0%; } 100% { left: 100%; } }
+
+        /* ANIMACIÓN PRESENTACIÓN: PIE CHART (Inicia desde 0) */
+        .pie-circle {
+            fill: none;
+            stroke: #f59e0b;
+            stroke-width: 8;
+            stroke-dasharray: 100 100;
+            stroke-dashoffset: 100; /* Vacío por defecto */
+            animation: fill-pie 4s ease-in-out infinite;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            stroke-linecap: round;
+        }
+        @keyframes fill-pie { 
+            0%, 10% { stroke-dashoffset: 100; } 
+            50%, 100% { stroke-dashoffset: 25; } 
+        }
+
+        .growth-bar {
+            transform-origin: bottom;
+            animation: grow-up 3s ease-out infinite alternate;
+        }
+        @keyframes grow-up { 0% { transform: scaleY(0.2); opacity: 0.3; } 100% { transform: scaleY(1); opacity: 1; } }
+
+        /* WEB DESIGN: ESCRITURA DE CÓDIGO MEJORADA */
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid transparent;
+            width: 0;
+            /* Sincronizado con el ciclo de 12s de la tarjeta para un loop infinito perfecto */
+            animation-duration: var(--anim-speed);
+            animation-iteration-count: infinite;
+            animation-delay: calc(var(--anim-speed) / -1.5); /* Mismo delay que la carta de Web Design */
+        }
+        
+        .line-1 { animation-name: type-line-1; }
+        .line-2 { animation-name: type-line-2; }
+        .line-3 { animation-name: type-line-3; }
+
+        /* Las animaciones ocurren del 0 al 30% del ciclo (mientras la tarjeta está al frente) */
+        @keyframes type-line-1 {
+            0%, 3% { width: 0; border-right-color: transparent; }
+            3.1% { width: 0; border-right-color: #10b981; animation-timing-function: steps(30, end); }
+            13% { width: 100%; border-right-color: transparent; animation-timing-function: step-end; }
+            80% { width: 100%; border-right-color: transparent; }
+            81%, 100% { width: 0; border-right-color: transparent; } /* Reset invisible al fondo */
+        }
+
+        @keyframes type-line-2 {
+            0%, 13% { width: 0; border-right-color: transparent; }
+            13.1% { width: 0; border-right-color: #10b981; animation-timing-function: steps(25, end); }
+            21% { width: 100%; border-right-color: transparent; animation-timing-function: step-end; }
+            80% { width: 100%; border-right-color: transparent; }
+            81%, 100% { width: 0; border-right-color: transparent; }
+        }
+
+        @keyframes type-line-3 {
+            0%, 21% { width: 0; border-right-color: transparent; }
+            21.1% { width: 0; border-right-color: #10b981; animation-timing-function: steps(20, end); }
+            29% { width: 100%; border-right-color: transparent; animation-timing-function: step-end; }
+            80% { width: 100%; border-right-color: transparent; }
+            81%, 100% { width: 0; border-right-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <div class="surface-grid"></div>
+
+        <div class="stack">
+            
+            <!-- TARJETA: VIDEO EDITING (ESTILO AFTER EFFECTS) -->
+            <div class="card card-video">
+                <div class="flex justify-between items-start mb-8">
+                    <div class="w-14 h-14 glass-panel flex items-center justify-center">
+                        <svg class="w-7 h-7 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] font-mono text-purple-300 font-bold tracking-tighter">PROJECT_VFX_FINAL</p>
+                        <span class="text-[11px] font-bold text-white/40">24 FPS | 4K</span>
+                    </div>
+                </div>
+                
+                <h2 class="text-4xl font-black mb-1 tracking-tight">Video Editing</h2>
+                <p class="text-xs text-purple-200/50 mb-10 font-bold uppercase tracking-widest">Timeline Workflow</p>
+                
+                <div class="glass-panel flex-1 p-6 flex flex-col gap-6 overflow-hidden">
+                    <div class="flex items-center justify-between text-[9px] font-mono opacity-40">
+                        <span>00:00:04:12</span>
+                        <span>00:00:08:00</span>
+                    </div>
+                    
+                    <div class="relative flex-1 flex flex-col gap-3 py-4">
+                        <div class="playhead-line"></div>
+                        
+                        <!-- Track 1: Video -->
+                        <div class="timeline-track">
+                            <div class="clip bg-purple-500/40 w-48 left-4"></div>
+                            <div class="keyframe left-12"></div>
+                            <div class="keyframe left-32"></div>
+                        </div>
+                        <!-- Track 2: Audio -->
+                        <div class="timeline-track">
+                            <div class="clip bg-blue-500/30 w-32 left-10"></div>
+                            <div class="clip bg-blue-500/30 w-12 left-44"></div>
+                        </div>
+                        <!-- Track 3: VFX -->
+                        <div class="timeline-track">
+                            <div class="clip bg-pink-500/40 w-20 left-24"></div>
+                            <div class="keyframe left-28"></div>
+                        </div>
+                        <!-- Track 4: Text -->
+                        <div class="timeline-track">
+                            <div class="clip bg-indigo-500/40 w-40 left-8"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center text-[10px] font-bold border-t border-white/5 pt-4">
+                        <span class="text-purple-300">LAYERS: 14</span>
+                        <span class="text-white/40">CACHED</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARJETA: PRESENTATION DESIGN (ANIMACIÓN SIN FLASH) -->
+            <div class="card card-pres">
+                <div class="flex justify-between items-start mb-8">
+                    <div class="w-14 h-14 glass-panel flex items-center justify-center">
+                        <svg class="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+                    </div>
+                    <div class="px-5 py-2 glass-panel text-[10px] font-black text-orange-300">QUARTERLY_KPI</div>
+                </div>
+
+                <h2 class="text-4xl font-black mb-1 tracking-tight">Presentation</h2>
+                <p class="text-xs text-orange-200/50 mb-10 font-bold uppercase tracking-widest">Performance Data</p>
+
+                <div class="glass-panel flex-1 p-6 flex flex-col gap-8">
+                    <div class="flex items-center gap-8">
+                        <div class="relative w-28 h-28 flex-shrink-0">
+                            <svg viewBox="0 0 36 36" class="w-full h-full">
+                                <circle cx="18" cy="18" r="14" fill="transparent" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+                                <circle cx="18" cy="18" r="14" class="pie-circle"></circle>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center font-black text-sm text-orange-400">75%</div>
+                        </div>
+                        <div class="flex-1 space-y-3">
+                            <p class="text-[10px] text-white/40 uppercase font-black tracking-widest">Growth Index</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-2xl font-black text-white">+8.4</span>
+                                <span class="text-[10px] text-orange-400 font-bold">pts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 flex items-end gap-3 px-3 pb-3 border-t border-white/5 pt-8">
+                        <div class="growth-bar flex-1 bg-orange-500/20 rounded-t-xl border-t border-orange-500/30" style="height: 60%"></div>
+                        <div class="growth-bar flex-1 bg-orange-500/40 rounded-t-xl border-t border-orange-500/50" style="height: 85%"></div>
+                        <div class="growth-bar flex-1 bg-orange-500/60 rounded-t-xl border-t border-orange-500/70" style="height: 70%"></div>
+                        <div class="growth-bar flex-1 bg-orange-500 rounded-t-xl border-t border-orange-400" style="height: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-between items-center opacity-40">
+                    <span class="text-[9px] font-bold tracking-widest">SYNCING METRICS...</span>
+                    <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+                </div>
+            </div>
+
+            <!-- TARJETA: WEB DESIGN (ESCRITURA DE CÓDIGO REAL) -->
+            <div class="card card-web">
+                <div class="flex justify-between items-start mb-8">
+                    <div class="w-14 h-14 glass-panel flex items-center justify-center">
+                        <svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="w-3.5 h-3.5 rounded-full bg-emerald-500/50"></div>
+                        <div class="w-3.5 h-3.5 rounded-full bg-white/10"></div>
+                    </div>
+                </div>
+
+                <h2 class="text-4xl font-black mb-1 tracking-tight">Web Design</h2>
+                <p class="text-xs text-emerald-200/50 mb-10 font-bold uppercase tracking-widest">Interactive UI</p>
+
+                <div class="glass-panel flex-1 p-8 font-mono text-[12px] leading-relaxed overflow-hidden bg-black/20">
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-purple-400">import</span> 
+                            <span class="typing-text line-1 text-emerald-300"> { Framer } from 'motion';</span>
+                        </div>
+                        <div>
+                            <span class="text-blue-400">const</span> 
+                            <span class="typing-text line-2 text-white"> ServiceApp = () => {</span>
+                        </div>
+                        <div class="pl-5 border-l-2 border-emerald-500/20">
+                            <span class="text-emerald-500">return</span>
+                            <span class="typing-text line-3 text-emerald-100"> &lt;Canvas 3D /&gt;;</span>
+                        </div>
+                        <div class="text-white/30">};</div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex gap-3">
+                    <div class="px-4 py-2 glass-panel text-[10px] font-black text-emerald-400">TYPESCRIPT</div>
+                    <div class="px-4 py-2 glass-panel text-[10px] font-black text-blue-400">WEBGL</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Spotlight sutil -->
+    <div class="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.06)_0%,transparent_60%)]"></div>
+
+</body>
+</html>

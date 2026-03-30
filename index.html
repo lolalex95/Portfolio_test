@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="dark scroll-smooth scroll-pt-20" lang="en">
+<html class="scroll-smooth scroll-pt-20" lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
@@ -178,6 +180,193 @@
         nav.nav-scrolled .nav-container {
             height: 64px !important;
         }
+
+        /* ============================================
+           HERO 3D CARD STACK — scoped with hero- prefix
+           ============================================ */
+        .hero-3d-wrapper {
+            --card-w: 340px;
+            --card-h: 480px;
+            --anim-speed: 12s;
+            --thickness: 12px;
+            --grid-color: rgba(99, 102, 241, 0.10);
+            width: 100%;
+            height: 560px;
+            perspective: 3500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: visible;
+        }
+
+        html.dark .hero-3d-wrapper {
+            --grid-color: rgba(99, 102, 241, 0.18);
+        }
+
+        .hero-surface-grid {
+            position: absolute;
+            width: 250%;
+            height: 250%;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: rotateX(38deg) rotateY(-25deg) rotateZ(30deg) translateY(0%);
+            mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-stack {
+            width: var(--card-w);
+            height: var(--card-h);
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translate(25%, 20%) rotateX(38deg) rotateY(-25deg) rotateZ(30deg) translateY(-10px);
+            flex-shrink: 0;
+        }
+
+        .hero-card {
+            position: absolute;
+            inset: 0;
+            border-radius: 40px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backface-visibility: hidden;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', 'Space Grotesk', sans-serif;
+            color: #fff;
+            box-shadow:
+                -1px 1px 0 rgba(255,255,255,0.05),
+                calc(var(--thickness) * -0.8) calc(var(--thickness) * 0.8) 0 rgba(0,0,0,0.6),
+                -30px 40px 90px rgba(0,0,0,0.7);
+            animation: hero-card-flow var(--anim-speed) infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-card:nth-child(1) { animation-delay: 0s; }
+        .hero-card:nth-child(2) { animation-delay: calc(var(--anim-speed) / -3); }
+        .hero-card:nth-child(3) { animation-delay: calc(var(--anim-speed) / -1.5); }
+
+        @keyframes hero-card-flow {
+            0%, 28%  { transform: translateX(0) translateZ(80px) translateY(0); z-index: 30; opacity: 1; filter: brightness(1.1); }
+            33%      { transform: translateX(450px) translateZ(80px) translateY(0); opacity: 0; z-index: 30; }
+            33.1%    { transform: translateX(0) translateZ(-120px) translateY(180px); z-index: 1; opacity: 0; }
+            38%, 62% { transform: translateX(0) translateZ(-50px) translateY(100px); z-index: 10; opacity: 0.45; filter: brightness(0.6) blur(2px); }
+            66%, 95% { transform: translateX(0) translateZ(15px) translateY(50px); z-index: 20; opacity: 0.85; filter: brightness(0.9); }
+            100%     { transform: translateX(0) translateZ(80px) translateY(0); z-index: 30; opacity: 1; filter: brightness(1.1); }
+        }
+
+        .hero-card-video { background: linear-gradient(135deg, #1e1b4b 0%, #0f0c29 100%); }
+        .hero-card-pres  { background: linear-gradient(135deg, #451a03 0%, #1c0a00 100%); }
+        .hero-card-web   { background: linear-gradient(135deg, #064e3b 0%, #022c22 100%); }
+
+        .hero-glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+        }
+
+        /* Video card: timeline */
+        .hero-timeline-track {
+            height: 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 4px;
+            position: relative;
+        }
+        .hero-clip {
+            position: absolute;
+            height: 100%;
+            border-radius: 4px;
+            border-left: 2px solid rgba(255,255,255,0.2);
+        }
+        .hero-keyframe {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: #a855f7;
+            transform: rotate(45deg);
+            top: 1.5px;
+            box-shadow: 0 0 10px #a855f7;
+            animation: hero-kf-glow 2s infinite alternate;
+        }
+        @keyframes hero-kf-glow { from { opacity: 0.3; } to { opacity: 1; } }
+
+        .hero-playhead-line {
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            width: 2px;
+            background: #fff;
+            box-shadow: 0 0 15px #fff;
+            z-index: 10;
+            animation: hero-playhead-move 6s infinite linear;
+        }
+        @keyframes hero-playhead-move { 0% { left: 0%; } 100% { left: 100%; } }
+
+        /* Presentation card: pie chart */
+        .hero-pie-circle {
+            fill: none;
+            stroke: #f59e0b;
+            stroke-width: 8;
+            stroke-dasharray: 100 100;
+            stroke-dashoffset: 100;
+            animation: hero-fill-pie 4s ease-in-out infinite;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            stroke-linecap: round;
+        }
+        @keyframes hero-fill-pie {
+            0%, 10% { stroke-dashoffset: 100; }
+            50%, 100% { stroke-dashoffset: 25; }
+        }
+
+        .hero-growth-bar {
+            transform-origin: bottom;
+            animation: hero-grow-up 3s ease-out infinite alternate;
+        }
+        @keyframes hero-grow-up { 0% { transform: scaleY(0.2); opacity: 0.3; } 100% { transform: scaleY(1); opacity: 1; } }
+
+        /* Web card: typing effect */
+        .hero-typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid transparent;
+            width: 0;
+            animation-duration: var(--anim-speed);
+            animation-iteration-count: infinite;
+            animation-delay: calc(var(--anim-speed) / -1.5);
+        }
+        .hero-line-1 { animation-name: hero-type-1; }
+        .hero-line-2 { animation-name: hero-type-2; }
+        .hero-line-3 { animation-name: hero-type-3; }
+
+        @keyframes hero-type-1 {
+            0%, 3%   { width: 0; border-right-color: transparent; }
+            3.1%     { width: 0; border-right-color: #10b981; animation-timing-function: steps(30, end); }
+            13%      { width: 100%; border-right-color: transparent; animation-timing-function: step-end; }
+            80%      { width: 100%; }
+            81%, 100%{ width: 0; border-right-color: transparent; }
+        }
+        @keyframes hero-type-2 {
+            0%, 13%  { width: 0; border-right-color: transparent; }
+            13.1%    { width: 0; border-right-color: #10b981; animation-timing-function: steps(25, end); }
+            21%      { width: 100%; border-right-color: transparent; animation-timing-function: step-end; }
+            80%      { width: 100%; }
+            81%, 100%{ width: 0; border-right-color: transparent; }
+        }
+        @keyframes hero-type-3 {
+            0%, 21%  { width: 0; border-right-color: transparent; }
+            21.1%    { width: 0; border-right-color: #10b981; animation-timing-function: steps(20, end); }
+            29%      { width: 100%; border-right-color: transparent; animation-timing-function: step-end; }
+            80%      { width: 100%; }
+            81%, 100%{ width: 0; border-right-color: transparent; }
+        }
     </style>
 </head>
 
@@ -285,8 +474,10 @@
             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl aspect-square bg-primary/5 rounded-full blur-[120px] pointer-events-none">
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-5 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+
+                <!-- LEFT: Hero text content -->
+                <div class="relative z-10 w-full">
                     <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left w-full">
                         <!-- Profile Picture -->
                         <div class="relative group flex-shrink-0 mx-auto md:mx-0 w-40 md:w-48">
@@ -319,574 +510,117 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden lg:block lg:col-span-5 lg:col-start-8 relative">
-                    <div class="w-full aspect-square relative flex items-center justify-center overflow-visible group">
-                        <!-- New SVG Animation will go here -->
-                        <div id="presentation-animation-container"
-                            class="w-full h-full overflow-visible flex items-center justify-center translate-x-4">
-                            <svg viewBox="160 160 380 260" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                                class="drop-shadow-2xl overflow-visible scale-90 lg:scale-90">
-                                <defs>
-                                    <filter id="card-shadow" x="-30%" y="-30%" width="160%" height="160%">
-                                        <feDropShadow dx="0" dy="12" stdDeviation="16"
-                                            flood-color="var(--card-shadow-color)"
-                                            flood-opacity="var(--card-shadow-opacity-1)" />
-                                        <feDropShadow dx="0" dy="4" stdDeviation="6"
-                                            flood-color="var(--card-shadow-color)"
-                                            flood-opacity="var(--card-shadow-opacity-2)" />
-                                    </filter>
-                                    <g id="card-video">
-                                        <rect width="320" height="200" rx="16" fill="var(--card-bg)"
-                                            filter="url(#card-shadow)" stroke="var(--card-stroke)" stroke-width="2" />
-                                        <rect x="24" y="24" width="36" height="36" rx="10"
-                                            fill="var(--card-v-header)" />
-                                        <path d="M38 48 l0 -12 l10 6 z" fill="#ef4444" />
-                                        <text x="76" y="47" font-family="Space Grotesk, sans-serif" font-size="20"
-                                            font-weight="700" fill="var(--card-text)">Video Editing</text>
-                                        <rect x="24" y="76" width="272" height="100" rx="12" fill="var(--card-inner-bg)"
-                                            stroke="var(--card-inner-stroke)" stroke-width="1" />
-                                        <rect x="40" y="96" width="100" height="12" rx="6" fill="var(--card-track-1)" />
-                                        <rect x="150" y="96" width="80" height="12" rx="6" fill="var(--card-track-2)" />
-                                        <rect x="40" y="120" width="160" height="12" rx="6" fill="#818cf8" />
-                                        <rect x="210" y="120" width="60" height="12" rx="6" fill="#c084fc" />
-                                        <rect x="40" y="144" width="120" height="12" rx="6" fill="#fb7185" />
-                                        <rect x="170" y="144" width="90" height="12" rx="6" fill="#f43f5e" />
-                                        <g class="playhead">
-                                            <line x1="60" y1="80" x2="60" y2="168" stroke="#ef4444" stroke-width="2" />
-                                            <polygon points="54,80 66,80 60,88" fill="#ef4444" />
-                                        </g>
-                                    </g>
 
-                                    <g id="card-web">
-                                        <rect width="320" height="200" rx="16" fill="var(--card-bg)"
-                                            filter="url(#card-shadow)" stroke="var(--card-stroke)" stroke-width="2" />
-                                        <rect x="24" y="24" width="36" height="36" rx="10"
-                                            fill="var(--card-w-header)" />
-                                        <circle cx="42" cy="42" r="8" stroke="var(--card-w-accent)" stroke-width="2.5"
-                                            fill="none" />
-                                        <ellipse cx="42" cy="42" rx="3.5" ry="8" stroke="var(--card-w-accent)"
-                                            stroke-width="2.5" fill="none" />
-                                        <line x1="33" y1="42" x2="51" y2="42" stroke="var(--card-w-accent)"
-                                            stroke-width="2.5" />
-                                        <text x="76" y="47" font-family="Space Grotesk, sans-serif" font-size="20"
-                                            font-weight="700" fill="var(--card-text)">Web Design</text>
-                                        <rect x="24" y="76" width="272" height="100" rx="12" fill="var(--card-inner-bg)"
-                                            stroke="var(--card-inner-stroke)" stroke-width="1" />
-                                        <circle cx="40" cy="90" r="4" fill="#fca5a5" />
-                                        <circle cx="52" cy="90" r="4" fill="#fde047" />
-                                        <circle cx="64" cy="90" r="4" fill="#86efac" />
-                                        <line x1="24" y1="102" x2="296" y2="102" stroke="var(--card-inner-stroke)"
-                                            stroke-width="1" />
-                                        <rect x="36" y="114" width="44" height="48" rx="6" fill="var(--card-track-1)" />
-                                        <rect x="92" y="114" width="140" height="28" rx="6" fill="var(--card-w-header)"
-                                            class="web-hero" />
-                                        <rect x="92" y="150" width="66" height="12" rx="4" fill="var(--card-track-2)" />
-                                        <rect x="166" y="150" width="66" height="12" rx="4"
-                                            fill="var(--card-track-2)" />
-                                        <g class="cursor">
-                                            <path d="M0,0 L11,26 L16,16 L26,11 Z" fill="var(--card-cursor-fill)"
-                                                stroke="var(--card-cursor-stroke)" stroke-width="2" />
-                                        </g>
-                                    </g>
+                <!-- RIGHT: 3D Card Stack Animation -->
+                <div class="hidden lg:flex items-center justify-center relative" style="overflow: visible;">
+                    <div class="hero-3d-wrapper">
+                        <div class="hero-surface-grid"></div>
+                        <div class="hero-stack">
+
+                            <!-- CARD 1: VIDEO EDITING -->
+                            <div class="hero-card hero-card-video">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-12 h-12 hero-glass flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6" style="color:#a855f7" fill="currentColor" viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg>
+                                    </div>
+                                    <div class="text-right">
+                                        <p style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(192,132,252,0.9);font-weight:700;letter-spacing:-0.03em">PROJECT_VFX_FINAL</p>
+                                        <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.35)">24 FPS | 4K</span>
+                                    </div>
+                                </div>
+                                <h2 style="font-size:28px;font-weight:900;margin-bottom:2px;letter-spacing:-0.03em">Video Editing</h2>
+                                <p style="font-size:9px;color:rgba(216,180,254,0.5);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:20px">Timeline Workflow</p>
+                                <div class="hero-glass flex-1 p-4 flex flex-col gap-4 overflow-hidden">
+                                    <div class="flex items-center justify-between" style="font-family:'JetBrains Mono',monospace;font-size:8px;opacity:0.4">
+                                        <span>00:00:04:12</span><span>00:00:08:00</span>
+                                    </div>
+                                    <div class="relative flex-1 flex flex-col gap-2.5 py-3">
+                                        <div class="hero-playhead-line"></div>
+                                        <div class="hero-timeline-track"><div class="hero-clip w-40 left-3" style="background:rgba(168,85,247,0.4)"></div><div class="hero-keyframe left-10"></div><div class="hero-keyframe left-28"></div></div>
+                                        <div class="hero-timeline-track"><div class="hero-clip w-28 left-8" style="background:rgba(59,130,246,0.3)"></div><div class="hero-clip w-10 left-40" style="background:rgba(59,130,246,0.3)"></div></div>
+                                        <div class="hero-timeline-track"><div class="hero-clip w-20 left-20" style="background:rgba(236,72,153,0.4)"></div><div class="hero-keyframe left-24"></div></div>
+                                        <div class="hero-timeline-track"><div class="hero-clip w-36 left-6" style="background:rgba(99,102,241,0.4)"></div></div>
+                                    </div>
+                                    <div class="flex justify-between" style="font-size:9px;font-weight:700;border-top:1px solid rgba(255,255,255,0.05);padding-top:10px">
+                                        <span style="color:#a855f7">LAYERS: 14</span><span style="color:rgba(255,255,255,0.35)">CACHED</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARD 2: PRESENTATION -->
+                            <div class="hero-card hero-card-pres">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-12 h-12 hero-glass flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6" style="color:#fb923c" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
+                                    </div>
+                                    <div class="hero-glass px-4 py-1.5" style="font-size:9px;font-weight:900;color:#fb923c">QUARTERLY_KPI</div>
+                                </div>
+                                <h2 style="font-size:28px;font-weight:900;margin-bottom:2px;letter-spacing:-0.03em">Presentation</h2>
+                                <p style="font-size:9px;color:rgba(253,186,116,0.5);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:20px">Performance Data</p>
+                                <div class="hero-glass flex-1 p-4 flex flex-col gap-5">
+                                    <div class="flex items-center gap-6">
+                                        <div class="relative flex-shrink-0" style="width:80px;height:80px">
+                                            <svg viewBox="0 0 36 36" class="w-full h-full">
+                                                <circle cx="18" cy="18" r="14" fill="transparent" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+                                                <circle cx="18" cy="18" r="14" class="hero-pie-circle"></circle>
+                                            </svg>
+                                            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;color:#fb923c">75%</div>
+                                        </div>
+                                        <div>
+                                            <p style="font-size:8px;color:rgba(255,255,255,0.35);text-transform:uppercase;font-weight:900;letter-spacing:0.1em">Growth Index</p>
+                                            <div style="display:flex;align-items:baseline;gap:3px;margin-top:4px">
+                                                <span style="font-size:20px;font-weight:900">+8.4</span>
+                                                <span style="font-size:9px;color:#fb923c;font-weight:700">pts</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex items-end gap-2 px-2 pb-2" style="border-top:1px solid rgba(255,255,255,0.05);padding-top:16px">
+                                        <div class="hero-growth-bar flex-1 rounded-t-lg" style="height:60%;background:rgba(251,146,60,0.2);border-top:1px solid rgba(251,146,60,0.3)"></div>
+                                        <div class="hero-growth-bar flex-1 rounded-t-lg" style="height:85%;background:rgba(251,146,60,0.4);border-top:1px solid rgba(251,146,60,0.5)"></div>
+                                        <div class="hero-growth-bar flex-1 rounded-t-lg" style="height:70%;background:rgba(251,146,60,0.6);border-top:1px solid rgba(251,146,60,0.7)"></div>
+                                        <div class="hero-growth-bar flex-1 rounded-t-lg" style="height:100%;background:#fb923c;border-top:1px solid #fbbf24"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARD 3: WEB DESIGN -->
+                            <div class="hero-card hero-card-web">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-12 h-12 hero-glass flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6" style="color:#34d399" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <div style="width:12px;height:12px;border-radius:50%;background:rgba(52,211,153,0.5)"></div>
+                                        <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.1)"></div>
+                                    </div>
+                                </div>
+                                <h2 style="font-size:28px;font-weight:900;margin-bottom:2px;letter-spacing:-0.03em">Web Design</h2>
+                                <p style="font-size:9px;color:rgba(110,231,183,0.5);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:20px">Interactive UI</p>
+                                <div class="hero-glass flex-1 p-5" style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;overflow:hidden;background:rgba(0,0,0,0.2)">
+                                    <div style="margin-bottom:8px">
+                                        <span style="color:#818cf8">import</span>
+                                        <span class="hero-typing hero-line-1" style="color:#6ee7b7"> { Framer } from 'motion';</span>
+                                    </div>
+                                    <div style="margin-bottom:8px">
+                                        <span style="color:#60a5fa">const</span>
+                                        <span class="hero-typing hero-line-2" style="color:#fff"> ServiceApp = () => {</span>
+                                    </div>
+                                    <div style="padding-left:16px;border-left:2px solid rgba(52,211,153,0.2);margin-bottom:8px">
+                                        <span style="color:#34d399">return</span>
+                                        <span class="hero-typing hero-line-3" style="color:#d1fae5"> &lt;Canvas 3D /&gt;;</span>
+                                    </div>
+                                    <div style="color:rgba(255,255,255,0.25)">};</div>
+                                </div>
+                                <div style="margin-top:16px;display:flex;gap:8px">
+                                    <div class="hero-glass px-3 py-1.5" style="font-size:9px;font-weight:900;color:#34d399">TYPESCRIPT</div>
+                                    <div class="hero-glass px-3 py-1.5" style="font-size:9px;font-weight:900;color:#60a5fa">WEBGL</div>
+                                </div>
+                            </div>
+
+                        </div><!-- end .hero-stack -->
+                    </div><!-- end .hero-3d-wrapper -->
+                </div><!-- end right column -->
 
-                                    <g id="card-pres">
-                                        <rect width="320" height="200" rx="16" fill="var(--card-bg)"
-                                            filter="url(#card-shadow)" stroke="var(--card-stroke)" stroke-width="2" />
-                                        <rect x="24" y="24" width="36" height="36" rx="10"
-                                            fill="var(--card-p-header)" />
-                                        <rect x="34" y="43" width="4" height="8" rx="1" fill="var(--card-p-accent)" />
-                                        <rect x="40" y="37" width="4" height="14" rx="1" fill="var(--card-p-accent)" />
-                                        <rect x="46" y="33" width="4" height="18" rx="1" fill="var(--card-p-accent)" />
-                                        <text x="76" y="47" font-family="Space Grotesk, sans-serif" font-size="20"
-                                            font-weight="700" fill="var(--card-text)">Presentations</text>
-                                        <rect x="24" y="76" width="272" height="100" rx="12" fill="var(--card-inner-bg)"
-                                            stroke="var(--card-inner-stroke)" stroke-width="1" />
-                                        <line x1="48" y1="156" x2="272" y2="156" stroke="var(--card-track-1)"
-                                            stroke-width="2" stroke-linecap="round" />
-                                        <rect x="64" y="106" width="32" height="48" rx="4" fill="#38bdf8"
-                                            class="bar bar1" />
-                                        <rect x="112" y="86" width="32" height="68" rx="4" fill="#a78bfa"
-                                            class="bar bar2" />
-                                        <rect x="160" y="116" width="32" height="38" rx="4" fill="#f472b6"
-                                            class="bar bar3" />
-                                        <rect x="208" y="96" width="32" height="58" rx="4" fill="#fbbf24"
-                                            class="bar bar4" />
-                                    </g>
-                                </defs>
-
-                                <style>
-                                    .move-c1 {
-                                        animation: move-c1 9s infinite ease-in-out;
-                                        transform-origin: 160px 100px;
-                                    }
-
-                                    .move-c2 {
-                                        animation: move-c2 9s infinite ease-in-out;
-                                        transform-origin: 160px 100px;
-                                    }
-
-                                    .move-c3 {
-                                        animation: move-c3 9s infinite ease-in-out;
-                                        transform-origin: 160px 100px;
-                                    }
-
-                                    @keyframes move-c1 {
-
-                                        0%,
-                                        20% {
-                                            transform: translate(0, 0) scale(1);
-                                            opacity: 1;
-                                        }
-
-                                        26% {
-                                            transform: translate(-15px, -15px) scale(1.05);
-                                            opacity: 0;
-                                        }
-
-                                        26.01% {
-                                            transform: translate(60px, -60px) scale(0.8);
-                                            opacity: 0;
-                                        }
-
-                                        33.33%,
-                                        53.33% {
-                                            transform: translate(60px, -60px) scale(0.8);
-                                            opacity: 1;
-                                        }
-
-                                        66.66%,
-                                        86.66% {
-                                            transform: translate(30px, -30px) scale(0.9);
-                                            opacity: 1;
-                                        }
-
-                                        100% {
-                                            transform: translate(0, 0) scale(1);
-                                            opacity: 1;
-                                        }
-                                    }
-
-                                    @keyframes move-c2 {
-
-                                        0%,
-                                        20% {
-                                            transform: translate(30px, -30px) scale(0.9);
-                                            opacity: 1;
-                                        }
-
-                                        33.33%,
-                                        53.33% {
-                                            transform: translate(0, 0) scale(1);
-                                            opacity: 1;
-                                        }
-
-                                        59.33% {
-                                            transform: translate(-15px, -15px) scale(1.05);
-                                            opacity: 0;
-                                        }
-
-                                        59.34% {
-                                            transform: translate(60px, -60px) scale(0.8);
-                                            opacity: 0;
-                                        }
-
-                                        66.66%,
-                                        86.66% {
-                                            transform: translate(60px, -60px) scale(0.8);
-                                            opacity: 1;
-                                        }
-
-                                        100% {
-                                            transform: translate(30px, -30px) scale(0.9);
-                                            opacity: 1;
-                                        }
-                                    }
-
-                                    @keyframes move-c3 {
-
-                                        0%,
-                                        20% {
-                                            transform: translate(60px, -60px) scale(0.8);
-                                            opacity: 1;
-                                        }
-
-                                        33.33%,
-                                        53.33% {
-                                            transform: translate(30px, -30px) scale(0.9);
-                                            opacity: 1;
-                                        }
-
-                                        66.66%,
-                                        86.66% {
-                                            transform: translate(0, 0) scale(1);
-                                            opacity: 1;
-                                        }
-
-                                        92.66% {
-                                            transform: translate(-15px, -15px) scale(1.05);
-                                            opacity: 0;
-                                        }
-
-                                        92.67% {
-                                            transform: translate(60px, -60px) scale(0.8);
-                                            opacity: 0;
-                                        }
-
-                                        100% {
-                                            transform: translate(60px, -60px) scale(0.8);
-                                            opacity: 1;
-                                        }
-                                    }
-
-                                    .c1-front {
-                                        animation: o-c1-front 9s infinite;
-                                    }
-
-                                    .c1-mid {
-                                        animation: o-c1-mid 9s infinite;
-                                    }
-
-                                    .c1-back {
-                                        animation: o-c1-back 9s infinite;
-                                    }
-
-                                    .c2-front {
-                                        animation: o-c2-front 9s infinite;
-                                    }
-
-                                    .c2-mid {
-                                        animation: o-c2-mid 9s infinite;
-                                    }
-
-                                    .c2-back {
-                                        animation: o-c2-back 9s infinite;
-                                    }
-
-                                    .c3-front {
-                                        animation: o-c3-front 9s infinite;
-                                    }
-
-                                    .c3-mid {
-                                        animation: o-c3-mid 9s infinite;
-                                    }
-
-                                    .c3-back {
-                                        animation: o-c3-back 9s infinite;
-                                    }
-
-                                    @keyframes o-c1-front {
-
-                                        0%,
-                                        26% {
-                                            opacity: 1;
-                                        }
-
-                                        26.01%,
-                                        92.65% {
-                                            opacity: 0;
-                                        }
-
-                                        92.66%,
-                                        100% {
-                                            opacity: 1;
-                                        }
-                                    }
-
-                                    @keyframes o-c1-back {
-
-                                        0%,
-                                        25.99% {
-                                            opacity: 0;
-                                        }
-
-                                        26%,
-                                        59.33% {
-                                            opacity: 1;
-                                        }
-
-                                        59.34%,
-                                        100% {
-                                            opacity: 0;
-                                        }
-                                    }
-
-                                    @keyframes o-c1-mid {
-
-                                        0%,
-                                        59.32% {
-                                            opacity: 0;
-                                        }
-
-                                        59.33%,
-                                        92.66% {
-                                            opacity: 1;
-                                        }
-
-                                        92.67%,
-                                        100% {
-                                            opacity: 0;
-                                        }
-                                    }
-
-                                    @keyframes o-c2-mid {
-
-                                        0%,
-                                        26% {
-                                            opacity: 1;
-                                        }
-
-                                        26.01%,
-                                        92.65% {
-                                            opacity: 0;
-                                        }
-
-                                        92.66%,
-                                        100% {
-                                            opacity: 1;
-                                        }
-                                    }
-
-                                    @keyframes o-c2-front {
-
-                                        0%,
-                                        25.99% {
-                                            opacity: 0;
-                                        }
-
-                                        26%,
-                                        59.33% {
-                                            opacity: 1;
-                                        }
-
-                                        59.34%,
-                                        100% {
-                                            opacity: 0;
-                                        }
-                                    }
-
-                                    @keyframes o-c2-back {
-
-                                        0%,
-                                        59.32% {
-                                            opacity: 0;
-                                        }
-
-                                        59.33%,
-                                        92.66% {
-                                            opacity: 1;
-                                        }
-
-                                        92.67%,
-                                        100% {
-                                            opacity: 0;
-                                        }
-                                    }
-
-                                    @keyframes o-c3-back {
-
-                                        0%,
-                                        26% {
-                                            opacity: 1;
-                                        }
-
-                                        26.01%,
-                                        92.65% {
-                                            opacity: 0;
-                                        }
-
-                                        92.66%,
-                                        100% {
-                                            opacity: 1;
-                                        }
-                                    }
-
-                                    @keyframes o-c3-mid {
-
-                                        0%,
-                                        25.99% {
-                                            opacity: 0;
-                                        }
-
-                                        26%,
-                                        59.33% {
-                                            opacity: 1;
-                                        }
-
-                                        59.34%,
-                                        100% {
-                                            opacity: 0;
-                                        }
-                                    }
-
-                                    @keyframes o-c3-front {
-
-                                        0%,
-                                        59.32% {
-                                            opacity: 0;
-                                        }
-
-                                        59.33%,
-                                        92.66% {
-                                            opacity: 1;
-                                        }
-
-                                        92.67%,
-                                        100% {
-                                            opacity: 0;
-                                        }
-                                    }
-
-                                    .playhead {
-                                        animation: playhead 3s infinite ease-in-out;
-                                    }
-
-                                    @keyframes playhead {
-
-                                        0%,
-                                        100% {
-                                            transform: translateX(0);
-                                        }
-
-                                        50% {
-                                            transform: translateX(180px);
-                                        }
-                                    }
-
-                                    .cursor {
-                                        animation: cursor 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
-                                    }
-
-                                    @keyframes cursor {
-
-                                        0%,
-                                        100% {
-                                            transform: translate(140px, 140px);
-                                        }
-
-                                        50% {
-                                            transform: translate(160px, 110px);
-                                        }
-                                    }
-
-                                    .web-hero {
-                                        animation: hero-hover 4s infinite;
-                                    }
-
-                                    @keyframes hero-hover {
-
-                                        0%,
-                                        40%,
-                                        100% {
-                                            fill: var(--card-w-header);
-                                        }
-
-                                        50%,
-                                        60% {
-                                            filter: brightness(1.1);
-                                        }
-                                    }
-
-                                    .bar {
-                                        transform-origin: bottom;
-                                        transform-box: fill-box;
-                                    }
-
-                                    .bar1 {
-                                        animation: b1 2s infinite ease-in-out alternate;
-                                    }
-
-                                    .bar2 {
-                                        animation: b2 2.5s infinite ease-in-out alternate-reverse;
-                                    }
-
-                                    .bar3 {
-                                        animation: b3 3s infinite ease-in-out alternate;
-                                    }
-
-                                    .bar4 {
-                                        animation: b4 2.2s infinite ease-in-out alternate-reverse;
-                                    }
-
-                                    @keyframes b1 {
-                                        0% {
-                                            transform: scaleY(0.5);
-                                        }
-
-                                        100% {
-                                            transform: scaleY(1.1);
-                                        }
-                                    }
-
-                                    @keyframes b2 {
-                                        0% {
-                                            transform: scaleY(0.7);
-                                        }
-
-                                        100% {
-                                            transform: scaleY(1.2);
-                                        }
-                                    }
-
-                                    @keyframes b3 {
-                                        0% {
-                                            transform: scaleY(0.8);
-                                        }
-
-                                        100% {
-                                            transform: scaleY(1.3);
-                                        }
-                                    }
-
-                                    @keyframes b4 {
-                                        0% {
-                                            transform: scaleY(0.6);
-                                        }
-
-                                        100% {
-                                            transform: scaleY(1.1);
-                                        }
-                                    }
-                                </style>
-
-                                <g transform="translate(140, 210)">
-                                    <g class="layer-back">
-                                        <g class="c1-back">
-                                            <use href="#card-video" class="move-c1" />
-                                        </g>
-                                        <g class="c2-back">
-                                            <use href="#card-web" class="move-c2" />
-                                        </g>
-                                        <g class="c3-back">
-                                            <use href="#card-pres" class="move-c3" />
-                                        </g>
-                                    </g>
-                                    <g class="layer-mid">
-                                        <g class="c1-mid">
-                                            <use href="#card-video" class="move-c1" />
-                                        </g>
-                                        <g class="c2-mid">
-                                            <use href="#card-web" class="move-c2" />
-                                        </g>
-                                        <g class="c3-mid">
-                                            <use href="#card-pres" class="move-c3" />
-                                        </g>
-                                    </g>
-                                    <g class="layer-front">
-                                        <g class="c1-front">
-                                            <use href="#card-video" class="move-c1" />
-                                        </g>
-                                        <g class="c2-front">
-                                            <use href="#card-web" class="move-c2" />
-                                        </g>
-                                        <g class="c3-front">
-                                            <use href="#card-pres" class="move-c3" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
